@@ -17,7 +17,16 @@ namespace RAP.Research {
         public string GivenName { get; set; }
         public string FamilyName { get; set; }
         public string Title { get; set; }
-        
+        public Campus Campus { get; set; }
+        public string Email { get; set; }
+        public DateTime CurrentStart { get; set; }
+        public DateTime UtasStart { get; set; }
+        public List<Publication> Publications { get; set; }
+        public string Unit { get; set; }
+        public string Photo { get; set; }
+        public PositionLevel CurrentLevel { get; set; }
 
+        // Total years(fractional) since {UtasStart}
+        public double Tenure { get { return DateTime.Today.Subtract(UtasStart).TotalDays / 365.24; } }
     }
 }
