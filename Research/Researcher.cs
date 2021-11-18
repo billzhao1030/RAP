@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace RAP.Research {
     public enum Campus {
         Hobart,
         Launceston,
+
+        [Description("Cradle Coast")]
         CradleCoast
     };
 
@@ -28,5 +31,7 @@ namespace RAP.Research {
 
         // Total years(fractional) since {UtasStart}
         public double Tenure { get { return DateTime.Today.Subtract(UtasStart).TotalDays / 365.24; } }
+
+        // TODO: add some function if easy for report generation
     }
 }

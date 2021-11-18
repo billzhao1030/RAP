@@ -59,10 +59,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="View\CumulativeCountView.xaml.cs">
+      <DependentUpon>CumulativeCountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PublicationDetailsView.xaml.cs">
+      <DependentUpon>PublicationDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PublicationListView.xaml.cs">
+      <DependentUpon>PublicationListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ReportView.xaml.cs">
+      <DependentUpon>ReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ResearcherDetailsView.xaml.cs">
+      <DependentUpon>ResearcherDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ResearcherListView.xaml.cs">
+      <DependentUpon>ResearcherListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SupervisionListView.xaml.cs">
+      <DependentUpon>SupervisionListView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\CumulativeCountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Controller\PublicationController.cs" />
     <Compile Include="Controller\ResearcherController.cs" />
     <Compile Include="Database\ERDAdapter.cs" />
     <Compile Include="Research\Position.cs" />
@@ -78,6 +104,30 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\PublicationDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PublicationListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ReportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ResearcherDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ResearcherListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SupervisionListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
