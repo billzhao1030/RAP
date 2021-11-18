@@ -59,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EnumStringConverter.cs" />
     <Compile Include="View\CumulativeCountView.xaml.cs">
       <DependentUpon>CumulativeCountView.xaml</DependentUpon>
     </Compile>

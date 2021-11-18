@@ -8,6 +8,7 @@ namespace RAP.Research {
     public class Staff : Researcher {
         public List<Position> Positions { get; set; }
         public List<string> Supervisees { get; set; }
+        public PositionLevel CurrentLevel { get; set; }
 
         private double ExpectedNumPublications {
             get {
