@@ -65,7 +65,11 @@
     </Page>
     <Compile Include="Controller\ResearcherController.cs" />
     <Compile Include="Database\ERDAdapter.cs" />
+    <Compile Include="Research\Position.cs" />
+    <Compile Include="Research\Publication.cs" />
     <Compile Include="Research\Researcher.cs" />
+    <Compile Include="Research\Staff.cs" />
+    <Compile Include="Research\Student.cs" />
     <Compile Include="View\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
