@@ -9,6 +9,7 @@ namespace RAP.Research {
         public List<Position> Positions { get; set; }
         public List<string> Supervisees { get; set; }
         public PositionLevel CurrentLevel { get; set; }
+        public string CurrentLevelName { get { return EnumStringConverter.GetDescription(CurrentLevel); } }
 
         private double ExpectedNumPublications {
             get {
@@ -42,6 +43,5 @@ namespace RAP.Research {
         }
 
         public double Performance { get { return ThreeYearAverage / ExpectedNumPublications; } }
-
     }
 }
