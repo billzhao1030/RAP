@@ -15,7 +15,6 @@ namespace RAP.Research {
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
         public PositionLevel Level { get; set; }
-
-        // maybe a enum to string convert property called Title here
+        public string Title { get { return EnumStringConverter.GetDescription(Level); } }
     }
 }

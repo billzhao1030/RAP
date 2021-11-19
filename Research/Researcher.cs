@@ -9,7 +9,6 @@ namespace RAP.Research {
     public enum Campus {
         Hobart,
         Launceston,
-
         [Description("Cradle Coast")]
         CradleCoast
     };
