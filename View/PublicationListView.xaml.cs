@@ -17,7 +17,7 @@ namespace RAP.View {
     /// <summary>
     /// Interaction logic for PublicationListView.xaml
     /// </summary>
-    public partial class PublicationListView : Page {
+    public partial class PublicationListView : UserControl {
         public PublicationListView() {
             InitializeComponent();
         }

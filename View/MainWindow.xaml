@@ -6,7 +6,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RAP.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="800">
+        Title="Research Assessment Program" MinHeight="650" MinWidth="800">
+    
+
     <Grid>
         <!-- Column Size Distirbution -->
         <Grid.ColumnDefinitions>
@@ -15,6 +17,23 @@
             <ColumnDefinition Width="1.2*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- ResearcherListView -->
+        <!-- ResearcherListView (left) -->
+        <Border BorderBrush="Gray" BorderThickness="2">
+            <local:ResearcherListView x:Name="RList"/>
+        </Border>
+
+        <!-- ResearcherDetailsView (middle) -->
+        <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="2">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Width="Auto">
+                <local:ResearcherDetailsView x:Name="RDetail"/>
+            </ScrollViewer>
+        </Border>
+
+        <!-- Other Details (right) -->
+        <Border Grid.Column="2" BorderBrush="Gray" BorderThickness="2">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Width="Auto">
+                <ContentControl x:Name="FuncWindow"/>
+            </ScrollViewer>
+        </Border>
     </Grid>
 </Window>

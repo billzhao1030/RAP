@@ -10,16 +10,17 @@ namespace RAP.Controller {
     public static class ResearcherController {
 
         public static List<Researcher> Researchers { get; private set; }
+        public static List<Researcher> Displayed { get; private set; }
         public static Researcher selectedResearcher { get; private set; }
 
         //TODO: how about a list of researchers which is to be displayed?
 
         // load researchers from database
-        public static void LoadResearchers() {
-            Researchers = ERDAdapter.FetchBasicResearcherDetails();
+        public static List<Researcher> LoadResearchers() {
+            Displayed = Researchers = ERDAdapter.FetchBasicResearcherDetails();
+
+            return Researchers;
         }
-
-
 
         // load selected researcher details
         public static void LoadCurrentResearcher(object selected) {
@@ -28,6 +29,22 @@ namespace RAP.Controller {
 
                 ERDAdapter.FetchFullResearcherDetails(selectedResearcher);
             }
+        }
+
+        public static void FilterByName(string value) {
+            if (value.Trim() != "") {
+                var filter =
+                    from researcher in Displayed
+                    where researcher.FamilyName.ToUpper().Contains(value) ||
+                          researcher.GivenName.ToUpper().Contains(value)
+                    select researcher;
+
+                Displayed = filter.ToList();
+            }
+        }
+
+        public static List<Researcher> GetResearchers() {
+            return Researchers;
         }
     }
 }

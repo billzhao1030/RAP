@@ -12,14 +12,27 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RAP.Controller;
+using RAP.Research;
 
 namespace RAP.View {
-    /// <summary>
-    /// Interaction logic for ResearcherListView.xaml
-    /// </summary>
-    public partial class ResearcherListView : Page {
+    public partial class ResearcherListView : UserControl {
         public ResearcherListView() {
+            ResearcherController.LoadResearchers();
             InitializeComponent();
+
+            //Categories.SelectedIndex = 0;
+        }
+
+        private void SearchBox_KeyUp(object sender, KeyEventArgs e) {
+            if (e.Key == Key.Enter) {
+                ResearcherController.FilterByName(SearchBox.Text);
+            }
+        }
+
+        private void ResearcherList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            ResearcherController.LoadCurrentResearcher(ResearcherList.SelectedItem);
+            ((MainWindow)(Application.Current.MainWindow)).UpdateResearcherDetailsView();
         }
     }
 }

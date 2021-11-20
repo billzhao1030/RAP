@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using RAP;
 using RAP.Research;
+using System.Diagnostics;
 
 namespace RAP.Database {
     public static class ERDAdapter {
@@ -22,7 +23,7 @@ namespace RAP.Database {
         // Return the database connection
         private static MySqlConnection GetConnection() {
             if (conn == null) {
-                string connectionDetails = String.Format("Database={0};Source={1};User Id={2};Password={3}", data, user, pass, serv);
+                string connectionDetails = String.Format("Database={0};Data Source={1};User Id={2};Password={3}", data, serv, user, pass);
                 conn = new MySqlConnection(connectionDetails);
             }
 
@@ -70,6 +71,7 @@ namespace RAP.Database {
                 if (conn != null) { conn.Close(); }
             }
 
+            researchers.Sort((r1, r2) => r1.FamilyName.CompareTo(r2.FamilyName));
             return researchers;
         }
 

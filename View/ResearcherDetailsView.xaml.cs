@@ -17,7 +17,7 @@ namespace RAP.View {
     /// <summary>
     /// Interaction logic for ResearcherDetailsView.xaml
     /// </summary>
-    public partial class ResearcherDetailsView : Page {
+    public partial class ResearcherDetailsView : UserControl {
         public ResearcherDetailsView() {
             InitializeComponent();
         }

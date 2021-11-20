@@ -30,6 +30,8 @@ namespace RAP.Research {
         // Total years(fractional) since {UtasStart}
         public double Tenure { get { return DateTime.Today.Subtract(UtasStart).TotalDays / 365.24; } }
 
+        public string WholeName { get { return String.Format("{0}, {1}({2})", FamilyName, GivenName, Title); } }
+
         // TODO: add some function if easy for report generation
     }
 }
