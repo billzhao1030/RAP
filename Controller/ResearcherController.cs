@@ -31,7 +31,9 @@ namespace RAP.Controller {
             }
         }
 
-        public static void FilterByName(string value) {
+        public static List<Researcher> FilterByName(string query) {
+            List<Researcher> subGroup = new List<Researcher>();
+            string value = query.ToUpper();
             if (value.Trim() != "") {
                 var filter =
                     from researcher in Displayed
@@ -39,7 +41,27 @@ namespace RAP.Controller {
                           researcher.GivenName.ToUpper().Contains(value)
                     select researcher;
 
-                Displayed = filter.ToList();
+                subGroup = Displayed = filter.ToList();
+                return subGroup;
+            } else {
+                return Researchers;
+            }
+        }
+
+        public static List<Researcher> FilterByLevel(object type) {
+            List<Researcher> subGroup = new List<Researcher>();
+            PositionLevel level = EnumStringConverter.ParseEnum<PositionLevel>(type.ToString());
+            if (level != PositionLevel.AllResearcher) {
+                var filter =
+                    from researcher in Displayed
+                    where researcher.CurrentLevel == level
+                    select researcher;
+
+                subGroup = Displayed = filter.ToList();
+
+                return subGroup;
+            } else {
+                return Researchers;
             }
         }
 

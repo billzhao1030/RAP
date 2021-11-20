@@ -15,14 +15,14 @@
         <!-- Search function -->
         <DockPanel DockPanel.Dock="Top">
             <Label Content="Search: " VerticalContentAlignment="Bottom"/>
-            <TextBox x:Name="SearchBox" IsReadOnly="False" Height="23" TextWrapping="Wrap" Text="TextBox" Width="120"/>
+            <TextBox x:Name="SearchBox" IsReadOnly="False" KeyUp="SearchBox_KeyUp" Margin="3"/>
         </DockPanel>
 
         <!-- Categories --> 
-        <ComboBox x:Name="Categories" DockPanel.Dock="Top" ItemsSource="{Binding Source={StaticResource LevelCategory}}">
+        <ComboBox x:Name="Categories" DockPanel.Dock="Top" SelectionChanged="Categories_SelectionChanged" ItemsSource="{Binding Source={StaticResource LevelCategory}}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Source={StaticResource LevelCategory}}"/>
+                    <TextBlock Text="{Binding Converter={StaticResource Convertor}, ConverterParameter=PositionLevel}"/>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>

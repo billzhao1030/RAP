@@ -60,6 +60,7 @@ namespace RAP.Database {
                             GivenName = rdr.GetString(2),
                             FamilyName = rdr.GetString(3),
                             Title = rdr.GetString(4),
+                            CurrentLevel = PositionLevel.Student,
                             Email = rdr.GetString(6)
                         });
                     }

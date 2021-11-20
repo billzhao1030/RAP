@@ -4,6 +4,8 @@ using System.ComponentModel;
 
 namespace RAP.Research {
     public enum PositionLevel {
+        [Description("All Researcher")] AllResearcher,
+        Student,
         [Description("Post-Doc")] A,
         [Description("Lecturer")] B,
         [Description("Senior Lecturer")] C,

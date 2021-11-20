@@ -41,6 +41,9 @@ namespace RAP.View {
                 RDetail.IsEnabled = true;
 
                 // do something
+
+
+                FuncWindow.Content = null;
             }
         }
 

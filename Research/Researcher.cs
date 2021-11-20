@@ -26,6 +26,7 @@ namespace RAP.Research {
         public List<Publication> Publications { get; set; }
         public string Unit { get; set; }
         public string Photo { get; set; }
+        public PositionLevel CurrentLevel { get; set; }
 
         // Total years(fractional) since {UtasStart}
         public double Tenure { get { return DateTime.Today.Subtract(UtasStart).TotalDays / 365.24; } }

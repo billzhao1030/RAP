@@ -21,18 +21,22 @@ namespace RAP.View {
             ResearcherController.LoadResearchers();
             InitializeComponent();
 
-            //Categories.SelectedIndex = 0;
+            Categories.SelectedIndex = 0;
         }
 
         private void SearchBox_KeyUp(object sender, KeyEventArgs e) {
             if (e.Key == Key.Enter) {
-                ResearcherController.FilterByName(SearchBox.Text);
+                ResearcherList.ItemsSource = ResearcherController.FilterByName(SearchBox.Text);
             }
         }
 
         private void ResearcherList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             ResearcherController.LoadCurrentResearcher(ResearcherList.SelectedItem);
             ((MainWindow)(Application.Current.MainWindow)).UpdateResearcherDetailsView();
+        }
+
+        private void Categories_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            ResearcherList.ItemsSource = ResearcherController.FilterByLevel(Categories.SelectedValue);
         }
     }
 }
