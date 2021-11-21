@@ -9,6 +9,8 @@ using RAP.Research;
 namespace RAP.Controller {
     public static class PublicationController {
         public static Publication selectedPublication { get; private set; }
+        public static List<string> PublicationYears { get; private set; }
+        public static bool Ascending { get; private set; }
 
 
         // load the full details in PublicationDetailsView
@@ -19,5 +21,15 @@ namespace RAP.Controller {
                 ERDAdapter.FetchFullPublicationDetails(selectedPublication);
             }
         }
+
+        public static void LoadPublicationDetail(object selected) {
+            if (selected != null) {
+                selectedPublication = (Publication)selected;
+
+                ERDAdapter.FetchFullPublicationDetails((Publication)selected);
+            }
+        }
+
+
     }
 }

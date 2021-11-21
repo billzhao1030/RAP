@@ -156,14 +156,14 @@ namespace RAP.Database {
                 rdr.Close();
                 MySqlCommand getPublicationList = new MySqlCommand("select publication.doi, year, title from publication, researcher_publication" +
                                                                    "where researcher_publication.doi = publication.doi and " +
-                                                                   "researcher_publication.researcher_id = '" + r.Id + "'", conn);
+                                                                   "researcher_publication.researcher_id = " + r.Id, conn);
                 rdr = getPublicationList.ExecuteReader();
 
                 while (rdr.Read()) {
                     publications.Add(new Publication { 
                         Doi = rdr.GetString(0),
-                        Title = rdr.GetString(1),
-                        Year = rdr.GetInt32(2)
+                        Title = rdr.GetString(2),
+                        Year = rdr.GetInt32(1)
                     });
                 }
 

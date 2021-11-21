@@ -10,9 +10,15 @@ namespace RAP.Research {
         public List<string> Supervisees { get; set; }
         public string CurrentLevelName { get { return EnumStringConverter.GetDescription(CurrentLevel); } }
 
+        
+
+        public List<string> GetSuperviees() {
+            return Supervisees;
+        }
+
         private double ExpectedNumPublications {
             get {
-                switch(this.CurrentLevel) {
+                switch(CurrentLevel) {
                     case PositionLevel.A: return 0.5;
                     case PositionLevel.B: return 1;
                     case PositionLevel.C: return 2;
@@ -29,9 +35,9 @@ namespace RAP.Research {
                 int num = 0;
                 int thisYear = DateTime.Now.Year;
 
-                for (int i = 0; i < Publications.Count; i++)
+                foreach (var publication in Publications)
                 {
-                    int publishedYear = Publications[i].Year;
+                    int publishedYear = publication.Year;
 
                     if (thisYear - 3 <= publishedYear && thisYear > publishedYear) {
                         num++;

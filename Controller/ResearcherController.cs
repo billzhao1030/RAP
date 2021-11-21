@@ -10,14 +10,13 @@ namespace RAP.Controller {
     public static class ResearcherController {
 
         public static List<Researcher> Researchers { get; private set; }
-        public static List<Researcher> Displayed { get; private set; }
         public static Researcher selectedResearcher { get; private set; }
 
         //TODO: how about a list of researchers which is to be displayed?
 
         // load researchers from database
         public static List<Researcher> LoadResearchers() {
-            Displayed = Researchers = ERDAdapter.FetchBasicResearcherDetails();
+            Researchers = ERDAdapter.FetchBasicResearcherDetails();
 
             return Researchers;
         }
@@ -31,42 +30,41 @@ namespace RAP.Controller {
             }
         }
 
-        public static List<Researcher> FilterByName(string query) {
-            List<Researcher> subGroup = new List<Researcher>();
-            string value = query.ToUpper();
+        public static List<Researcher> FilterBy(string name, object type) {
+            List<Researcher> subGroup = Researchers;
+            PositionLevel level = EnumStringConverter.ParseEnum<PositionLevel>(type.ToString());
+            string value = name.ToUpper();
+
+            if (level != PositionLevel.AllResearcher) {
+                var filter =
+                    from researcher in subGroup
+                    where researcher.CurrentLevel == level
+                    select researcher;
+
+                subGroup = filter.ToList();
+            }
+
             if (value.Trim() != "") {
                 var filter =
-                    from researcher in Displayed
+                    from researcher in subGroup
                     where researcher.FamilyName.ToUpper().Contains(value) ||
                           researcher.GivenName.ToUpper().Contains(value)
                     select researcher;
 
-                subGroup = Displayed = filter.ToList();
-                return subGroup;
-            } else {
-                return Researchers;
+                subGroup = filter.ToList();
             }
-        }
-
-        public static List<Researcher> FilterByLevel(object type) {
-            List<Researcher> subGroup = new List<Researcher>();
-            PositionLevel level = EnumStringConverter.ParseEnum<PositionLevel>(type.ToString());
-            if (level != PositionLevel.AllResearcher) {
-                var filter =
-                    from researcher in Displayed
-                    where researcher.CurrentLevel == level
-                    select researcher;
-
-                subGroup = Displayed = filter.ToList();
-
-                return subGroup;
-            } else {
-                return Researchers;
-            }
+            return subGroup;
         }
 
         public static List<Researcher> GetResearchers() {
             return Researchers;
+        }
+
+        public static List<Position> GetPositions() {
+            if(selectedResearcher != null) {
+                return ((Staff)selectedResearcher).Positions;
+            }
+            return null; 
         }
     }
 }

@@ -11,7 +11,9 @@
     <DockPanel>
         <!-- Title -->
         <Label Content="Researcher" DockPanel.Dock="Top" Style="{StaticResource HeaderStyle}"/>
-        <Button Content="Generate Report" DockPanel.Dock="Top" Margin="5"/>
+        
+        <!-- Generate report -->
+        <Button Content="Generate Report" DockPanel.Dock="Top" Margin="5" Click="Button_Click"/>
         <!-- Search function -->
         <DockPanel DockPanel.Dock="Top">
             <Label Content="Search: " VerticalContentAlignment="Bottom"/>
@@ -19,7 +21,9 @@
         </DockPanel>
 
         <!-- Categories --> 
-        <ComboBox x:Name="Categories" DockPanel.Dock="Top" SelectionChanged="Categories_SelectionChanged" ItemsSource="{Binding Source={StaticResource LevelCategory}}">
+        <ComboBox x:Name="Categories" DockPanel.Dock="Top" 
+                  SelectionChanged="Categories_SelectionChanged" 
+                  ItemsSource="{Binding Source={StaticResource LevelCategory}}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Converter={StaticResource Convertor}, ConverterParameter=PositionLevel}"/>
@@ -30,16 +34,8 @@
         <!-- Researcher Name List -->
         <ListBox x:Name="ResearcherList" 
                  ItemsSource="{Binding Source={StaticResource getResearcher}}"
-                 SelectionChanged="ResearcherList_SelectionChanged">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Style="{StaticResource FiledStyle}">
-                        <TextBlock.Text>
-                            <Binding Path="WholeName"/>
-                        </TextBlock.Text>
-                    </TextBlock>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
+                 SelectionChanged="ResearcherList_SelectionChanged"
+                 ItemTemplate="{StaticResource showResearcherName}">
         </ListBox>
     </DockPanel>
 </UserControl>

@@ -7,6 +7,97 @@
       mc:Ignorable="d" >
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
         
+        <!-- Content -->
+        
+        <!-- Header -->
+        <Label Grid.ColumnSpan="4"
+               Content="Researcher Details"
+               Style="{StaticResource HeaderStyle}"/> 
+        
+        <!-- Photo -->
+        <Image Grid.Row="1" Grid.Column="2" Grid.RowSpan="6" Grid.ColumnSpan="2" Height="150" Source="{Binding Photo}"/>
+
+        <!-- Name -->
+        <Label Content="Name:" Grid.Row="1" Style="{StaticResource LabelStyle}"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource FieldStyle}">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0} {1} {2}" >
+                    <Binding Path="Title"/>
+                    <Binding Path="FamilyName"/>
+                    <Binding Path="GivenName"/>
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+        
+        <!-- Unit -->
+        <Label Content="School/Unit:" Grid.Row="2" Style="{StaticResource LabelStyle}"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource FieldStyle}" Text="{Binding Path=Unit}"/>
+        
+        <!-- Campus -->
+        <Label Content="Campus" Grid.Row="3" Style="{StaticResource LabelStyle}"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource FieldStyle}" Text="{Binding Campus, Converter={StaticResource Convertor}}"/>
+        
+        <!-- Email -->
+        <Label Content="Email:" Grid.Row="4" Style="{StaticResource LabelStyle}"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource FieldStyle}" Text="{Binding Path=Email}"/>
+
+        <!-- Degree -->
+        <Label Content="Degree:" Grid.Row="5" Style="{StaticResource LabelStyle}"/>
+        <TextBlock Grid.Row="5" Grid.Column="1" Style="{StaticResource FieldStyle}" Text="{Binding Path=Degree}"/>
+
+        <!-- Supervisor -->
+        <Label Content="Supervisor:" Grid.Row="6" Style="{StaticResource LabelStyle}"/>
+        <TextBlock Grid.Row="6" Grid.Column="1" Style="{StaticResource FieldStyle}" Text="{Binding Path=Supervisor}"/>
+
+        <!-- CurrentLevelName -->
+        <Label Content="Current Position:" Grid.Row="7" Style="{StaticResource LabelStyle}"/>
+        <TextBlock Grid.Row="7" Grid.Column="1" Style="{StaticResource FieldStyle}" Text="{Binding Path=CurrentLevelName}"/>
+
+        <!-- Current Start -->
+        <Label Content="Commenced Current Position:" Grid.Row="8" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}"/>
+        <TextBlock Grid.Row="8" Grid.Column="2" Style="{StaticResource FieldStyle}" Text="{Binding Path=CurrentStart, StringFormat='{}{0:dd/MM/yyyy}'}"/>
+
+        <!-- Utas Start -->
+        <Label Content="Commenced With Institution:" Grid.Row="9" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}"/>
+        <TextBlock Grid.Row="9" Grid.Column="2" Style="{StaticResource FieldStyle}" Text="{Binding Path=UtasStart, StringFormat='{}{0:dd/MM/yyyy}'}"/>
+
+        <!-- Positions list -->
+        <Label Content="Previous Positions" Grid.Row="10" Style="{StaticResource HeaderStyle}"/>
+        <ListBox Grid.Row="11" Grid.ColumnSpan="4" ItemsSource="{Binding Source={StaticResource getPosition}}" ItemTemplate="{StaticResource showPreviousPositions}"/>
+        
+        <!-- Tenure -->
+        <Label Content="Tenure:" Grid.Row="12" Style="{StaticResource LabelStyle}"/>
+        <TextBlock Grid.Row="12" Grid.Column="1" Style="{StaticResource FieldStyle}" Text="{Binding Tenure, StringFormat='{}{0:F1} year(s)'}"/>
+
+        
+        
+        
+
     </Grid>
 </UserControl>

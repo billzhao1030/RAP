@@ -21,5 +21,13 @@ namespace RAP.View {
         public ResearcherDetailsView() {
             InitializeComponent();
         }
+
+        private void ShowSupervisions_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void CumulativeCount_Click(object sender, RoutedEventArgs e) {
+
+        }
     }
 }

@@ -26,7 +26,7 @@ namespace RAP.View {
 
         private void SearchBox_KeyUp(object sender, KeyEventArgs e) {
             if (e.Key == Key.Enter) {
-                ResearcherList.ItemsSource = ResearcherController.FilterByName(SearchBox.Text);
+                ResearcherList.ItemsSource = ResearcherController.FilterBy(SearchBox.Text, Categories.SelectedItem);
             }
         }
 
@@ -36,7 +36,11 @@ namespace RAP.View {
         }
 
         private void Categories_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            ResearcherList.ItemsSource = ResearcherController.FilterByLevel(Categories.SelectedValue);
+            ResearcherList.ItemsSource = ResearcherController.FilterBy(SearchBox.Text, Categories.SelectedItem);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+
         }
     }
 }
