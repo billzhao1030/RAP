@@ -1,12 +1,23 @@
-﻿<UserControl x:Class="RAP.View.ReportView"
+﻿<Window x:Class="RAP.View.ReportView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RAP.View"
-      mc:Ignorable="d">
+      mc:Ignorable="d" MinHeight="500" MinWidth="600"
+      Title="Achievement Report">
 
-    <Grid>
+    <StackPanel Orientation="Vertical">
+        <Button x:Name="CopyEmailButton" Content="Copy Email" Click="CopyEmailButton_Click" HorizontalAlignment="Center"/>
         
-    </Grid>
-</UserControl>
+        <!-- Report -->
+        <ListView x:Name="PerformanceTable" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.View>
+                <GridView>
+                    
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </StackPanel>
+</Window>

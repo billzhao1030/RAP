@@ -24,7 +24,7 @@
 
         <!-- ResearcherDetailsView (middle) -->
         <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="2">
-            <ScrollViewer VerticalScrollBarVisibility="Auto" Width="Auto">
+            <ScrollViewer VerticalScrollBarVisibility="Disabled" Width="Auto">
                 <local:ResearcherDetailsView x:Name="RDetail"/>
             </ScrollViewer>
         </Border>

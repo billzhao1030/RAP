@@ -54,10 +54,10 @@
 
         <!-- Available -->
         <Label Content="Available:" Grid.Row="7" Style="{StaticResource LabelStyle}"/>
-        <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding Available}" Style="{StaticResource FieldStyle}"/>
+        <TextBlock Grid.Row="7" Grid.Column="1" Text="{Binding Available, StringFormat='{}{0:dd/MM/yyyy}'}" Style="{StaticResource FieldStyle}"/>
 
         <!-- Age -->
         <Label Content="Age:" Grid.Row="8" Style="{StaticResource LabelStyle}"/>
-        <TextBlock Grid.Row="8" Grid.Column="1" Text="{Binding Age}" Style="{StaticResource FieldStyle}"/>
+        <TextBlock Grid.Row="8" Grid.Column="1" Text="{Binding Age, StringFormat='{}{0} year(s)'}" Style="{StaticResource FieldStyle}"/>
     </Grid>
 </UserControl>

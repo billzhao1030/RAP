@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RAP.Controller;
 
 namespace RAP.View {
     /// <summary>
@@ -20,6 +21,11 @@ namespace RAP.View {
     public partial class CumulativeCountView : UserControl {
         public CumulativeCountView() {
             InitializeComponent();
+            CumulativeCountTable.ItemsSource = PublicationController.CumulativeCount();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            ((MainWindow)Application.Current.MainWindow).FuncWindow.Content = null;
         }
     }
 }

@@ -66,5 +66,26 @@ namespace RAP.Controller {
                 ERDAdapter.FetchFullPublicationDetails(selectedPublication);
             }
         }
+
+        public static List<Tuple<int, int>> CumulativeCount() {
+            List<Tuple<int, int>> table = new List<Tuple<int, int>>();
+            Researcher researcher = ResearcherController.selectedResearcher;
+            
+            if (researcher != null) {
+                int start = researcher.UtasStart.Year;
+                int end = DateTime.Today.Year;
+
+                for (int i = start; i <= end; i++) {
+                    var query = from publication in researcher.Publications
+                                where publication.Year == i
+                                select publication;
+                    table.Add(new Tuple<int, int>(i, query.Count()));
+                }
+
+                return table;
+            }
+
+            return null;
+        }
     }
 }

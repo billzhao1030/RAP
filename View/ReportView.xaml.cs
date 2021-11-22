@@ -12,14 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RAP.Controller;
 
 namespace RAP.View {
     /// <summary>
     /// Interaction logic for ReportView.xaml
     /// </summary>
-    public partial class ReportView : UserControl {
+    public partial class ReportView : Window {
         public ReportView() {
             InitializeComponent();
+        }
+
+        private void CopyEmailButton_Click(object sender, RoutedEventArgs e) {
+            ReportController.LoadEmail();
         }
     }
 }

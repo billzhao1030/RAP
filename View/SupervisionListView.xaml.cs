@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RAP.Controller;
 
 namespace RAP.View {
     /// <summary>
@@ -20,6 +21,7 @@ namespace RAP.View {
     public partial class SupervisionListView : UserControl {
         public SupervisionListView() {
             InitializeComponent();
+            DataContext = ResearcherController.selectedResearcher;
         }
     }
 }

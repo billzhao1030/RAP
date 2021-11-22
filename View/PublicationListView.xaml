@@ -11,7 +11,8 @@
         <DockPanel>
             <Label Content="Publications" DockPanel.Dock="Left" Style="{StaticResource HeaderStyle}"/>
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" 
-                        HorizontalAlignment="Right" VerticalAlignment="Top">
+                        HorizontalAlignment="Right" VerticalAlignment="Top"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <ComboBox x:Name="PubY1" Height="25" Width="70"/>
                 <Label Content="to"/>
                 <ComboBox x:Name="PubY2" Height="25" Width="70"/>

@@ -27,7 +27,16 @@ namespace RAP.View {
             int start, end;
 
             if (ResearcherController.selectedResearcher != null) {
-                PublicationList.ItemsSource = PublicationController.FilterByYear(1, 2);
+                if (!int.TryParse(PubY1.Text, out start)) {
+                    start = DateTime.MinValue.Year;
+                }
+
+                if (!int.TryParse(PubY2.Text, out end)) {
+                    end = DateTime.MaxValue.Year;
+                }
+                
+
+                PublicationList.ItemsSource = PublicationController.FilterByYear(start, end);
             }
         }
 

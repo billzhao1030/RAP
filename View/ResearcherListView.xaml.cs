@@ -39,8 +39,8 @@ namespace RAP.View {
             ResearcherList.ItemsSource = ResearcherController.FilterBy(SearchBox.Text, Categories.SelectedItem);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) {
-
+        private void ReportButton_Click(object sender, RoutedEventArgs e) {
+            
         }
     }
 }
