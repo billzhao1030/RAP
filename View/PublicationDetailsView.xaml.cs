@@ -23,5 +23,9 @@ namespace RAP.View {
             InitializeComponent();
             DataContext = PublicationController.selectedPublication;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            ((MainWindow)Application.Current.MainWindow).FuncWindow.Content = null;
+        }
     }
 }

@@ -9,8 +9,11 @@ using System.ComponentModel;
 
 namespace RAP.Controller {
     public enum PerformanceLevel {
-
-    }
+        [Description("Star Performers")]Star,
+        [Description("Below Expectation")] BelowExpectations,
+        [Description("Meeting Minimum")] MeetingMinimum,
+        [Description("Poor Performers")] Poor
+    };
 
     public static class ReportController {
         private static List<Staff> staffs;

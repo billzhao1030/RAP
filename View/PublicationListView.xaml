@@ -12,12 +12,12 @@
             <Label Content="Publications" DockPanel.Dock="Left" Style="{StaticResource HeaderStyle}"/>
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" 
                         HorizontalAlignment="Right" VerticalAlignment="Top"
-                        ScrollViewer.VerticalScrollBarVisibility="Auto">
-                <ComboBox x:Name="PubY1" Height="25" Width="70"/>
-                <Label Content="to"/>
-                <ComboBox x:Name="PubY2" Height="25" Width="70"/>
-                <Button x:Name="FilterYear" Height="25" Width="90" Content="Filter" Margin="5,0,0,0" Click="FilterYear_Click"/>
-                <Button x:Name="InvertYear" Height="25" Width="90" Content="Invert" Margin="5,0,0,0" Click="InvertYear_Click"/>
+                        ScrollViewer.VerticalScrollBarVisibility="Auto" MinWidth="150">
+                <ComboBox x:Name="PubY1" Height="25" Width="50"/>
+                <Label Content="to" VerticalContentAlignment="Center"/>
+                <ComboBox x:Name="PubY2" Height="25" Width="50"/>
+                <Button x:Name="FilterYear" Height="25" Width="55" Content="Filter" Margin="10,5,0,5" Click="FilterYear_Click"/>
+                <Button x:Name="InvertYear" Height="25" Width="55" Content="Invert" Margin="15,5,0,5" Click="InvertYear_Click"/>
             </StackPanel>
         </DockPanel>
 

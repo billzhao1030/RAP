@@ -7,7 +7,11 @@
       mc:Ignorable="d">
 
     <StackPanel Orientation="Vertical">
-        <Label Content="Supervision List" Style="{StaticResource HeaderStyle}"/>
+        <Grid>
+            <Label Content="Supervision List" DockPanel.Dock="Left" Style="{StaticResource HeaderStyle}"/>
+            <Button Content="x" HorizontalAlignment="Right" Click="Button_Click" Height="30" Width="30" />
+        </Grid>
+        
         <ListBox Grid.Row="1" ItemsSource="{Binding Supervisees}" BorderThickness="0"/>
     </StackPanel>
 </UserControl>

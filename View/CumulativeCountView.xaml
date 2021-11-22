@@ -7,16 +7,16 @@
       mc:Ignorable="d">
 
     <StackPanel Orientation="Vertical">
-        <DockPanel>
+        <Grid>
             <Label Content="CumulativeCount" DockPanel.Dock="Left" Style="{StaticResource HeaderStyle}"/>
-            <Button Content="x" DockPanel.Dock="Right" Height="30" Width="30" Click="Button_Click"/>
-        </DockPanel>
+            <Button Content="x" HorizontalAlignment="Right" Height="30" Width="30" Click="Button_Click"/>
+        </Grid>
         
 
-        <ListView x:Name="CumulativeCountTable" BorderThickness="1">
+        <ListView x:Name="CumulativeCountTable" BorderThickness="0" HorizontalAlignment="Left" HorizontalContentAlignment="Center">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Year" DisplayMemberBinding="{Binding Item1}" Width="100"/>
+                    <GridViewColumn Header="Year" DisplayMemberBinding="{Binding Item1}" Width="100" />
                     <GridViewColumn Header="Publication(s)" DisplayMemberBinding="{Binding Item2}" Width="200"/>
                 </GridView>
             </ListView.View>
