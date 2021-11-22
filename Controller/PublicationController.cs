@@ -63,7 +63,7 @@ namespace RAP.Controller {
             if (selected != null) {
                 selectedPublication = (Publication)selected;
 
-                ERDAdapter.FetchFullPublicationDetails((Publication)selected);
+                ERDAdapter.FetchFullPublicationDetails(selectedPublication);
             }
         }
     }
