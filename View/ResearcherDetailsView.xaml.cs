@@ -23,11 +23,11 @@ namespace RAP.View {
         }
 
         private void ShowSupervisions_Click(object sender, RoutedEventArgs e) {
-
+            ((MainWindow)Application.Current.MainWindow).SwitchFuncView(FuncView.SupervisionList);
         }
 
         private void CumulativeCount_Click(object sender, RoutedEventArgs e) {
-
+            ((MainWindow)Application.Current.MainWindow).SwitchFuncView(FuncView.CumulativeCount);
         }
     }
 }

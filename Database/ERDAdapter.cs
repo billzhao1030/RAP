@@ -98,15 +98,15 @@ namespace RAP.Database {
                     r.CurrentStart = rdr.GetDateTime(6);
 
                     if (r is Staff) {
-                        Staff s = r as Staff;
+                        var s = r as Staff;
 
                         List<string> supervisees = new List<string>();
                         List<Position> positions = new List<Position>();
 
                         // fetch the supervision name list (sorted)
                         rdr.Close();
-                        MySqlCommand getSupervisionList = new MySqlCommand("select title, given_name, family_name from researcher" +
-                                                                           "where supervisor_id = '" + s.Id +"'", conn);
+                        MySqlCommand getSupervisionList = new MySqlCommand("select title, given_name, family_name from researcher " +
+                                                                           "where supervisor_id = " + r.Id, conn);
                         rdr = getSupervisionList.ExecuteReader();
 
                         while (rdr.Read()) {
@@ -129,14 +129,15 @@ namespace RAP.Database {
                                     Start = rdr.GetDateTime(2),
                                     End = rdr.GetDateTime(3)      
                                 });
+                                
                             }
                         }
-
+                        
                         positions.Sort((p1, p2) => p2.Start.CompareTo(p1.Start)); // sort based on the time
                         s.Positions = positions;
                         
                     } else if (r is Student) {
-                        Student s = r as Student;
+                        var s = r as Student;
                         s.Degree = rdr.GetString(3);
 
                         int supervisorID = rdr.GetInt32(4);
@@ -154,7 +155,7 @@ namespace RAP.Database {
 
                 // get the publication list (basic)
                 rdr.Close();
-                MySqlCommand getPublicationList = new MySqlCommand("select publication.doi, year, title from publication, researcher_publication" +
+                MySqlCommand getPublicationList = new MySqlCommand("select publication.doi, year, title from publication, researcher_publication " +
                                                                    "where researcher_publication.doi = publication.doi and " +
                                                                    "researcher_publication.researcher_id = " + r.Id, conn);
                 rdr = getPublicationList.ExecuteReader();

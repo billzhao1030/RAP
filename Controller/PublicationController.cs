@@ -14,22 +14,57 @@ namespace RAP.Controller {
 
 
         // load the full details in PublicationDetailsView
-        public static void LoadCurrentPublication(object selected) {
-            if (selected != null) {
-                selectedPublication = (Publication)selected;
+        public static List<Publication> LoadPublications() {
+            Researcher researcher = ResearcherController.selectedResearcher;
+            Ascending = false;
 
-                ERDAdapter.FetchFullPublicationDetails(selectedPublication);
+            if (researcher != null) {
+                var UtasStart = researcher.UtasStart.Year;
+                var range = DateTime.Today.Year - UtasStart + 1;
+
+                PublicationYears = Enumerable.Range(UtasStart, range).Select(o => o.ToString()).ToList();
+
+                // add a default empty value for start
+                PublicationYears.Insert(0, "");
+
+                return Sorting(researcher.Publications);
+            }
+
+            return null;
+        }
+
+        private static List<Publication> Sorting(List<Publication> publications) {
+            if (Ascending) {
+                return publications.OrderBy(x => x.Year).ThenBy(x => x.Title).ToList();
+            } else {
+                return publications.OrderByDescending(x => x.Year).ThenBy(x => x.Title).ToList();
             }
         }
 
-        public static void LoadPublicationDetail(object selected) {
+        public static List<Publication> Invert() {
+            Ascending = !Ascending;
+            Researcher researcher = ResearcherController.selectedResearcher;
+
+            return Sorting(researcher.Publications);
+        }
+
+        public static List<Publication> FilterByYear(int year1, int year2) {
+            int start = Math.Min(year1, year2);
+            int end = Math.Max(year1, year2);
+
+            var filter = from publication in ResearcherController.selectedResearcher.Publications
+                         where publication.Year >= start && publication.Year <= end
+                         select publication;
+                         
+            return Sorting(filter.ToList());
+        }
+
+        public static void LoadPublicationDetails(object selected) {
             if (selected != null) {
                 selectedPublication = (Publication)selected;
 
                 ERDAdapter.FetchFullPublicationDetails((Publication)selected);
             }
         }
-
-
     }
 }

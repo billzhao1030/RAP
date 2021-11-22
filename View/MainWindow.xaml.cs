@@ -40,9 +40,19 @@ namespace RAP.View {
                 RDetail.DataContext = ResearcherController.selectedResearcher;
                 RDetail.IsEnabled = true;
 
-                // do something
+                // Hide show name button if not a staff or supervise no student
+                var supervisionNum = RDetail.supervisionCount.Text;
+                RDetail.ShowSupervisions.IsEnabled = (supervisionNum != "") && (supervisionNum != "0");
 
+                // set attributes of the publication list view header
+                var PubLView = RDetail.PList;
+                PubLView.PublicationList.ItemsSource = PublicationController.LoadPublications();
+                PubLView.PubY1.ItemsSource = PubLView.PubY2.ItemsSource = PublicationController.PublicationYears;
 
+                // set year range selection to 0
+                PubLView.PubY1.SelectedIndex = PubLView.PubY2.SelectedIndex = 0;
+
+                // clear FuncWindow content
                 FuncWindow.Content = null;
             }
         }
