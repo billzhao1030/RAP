@@ -16,6 +16,8 @@ namespace RAP.View {
                 return EnumStringConverter.GetDescription((Campus)value);
             } else if (o.ToString() == "PositionLevel") {
                 return EnumStringConverter.GetDescription((PositionLevel)value);
+            } else if (o.ToString() == "PerformanceLevel") {
+                return EnumStringConverter.GetDescription((PerformanceLevel)value);
             } else {
                 return null;
             }

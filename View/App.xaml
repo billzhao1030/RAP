@@ -8,7 +8,6 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <!-- The display styles definition -->
-
         <Style x:Key="HeaderStyle" TargetType="Label">
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontSize" Value="16" />
@@ -37,15 +36,15 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
 
-        
+        <ObjectDataProvider x:Key="performanceCategory" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="controller:PerformanceLevel"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+
         <ObjectDataProvider x:Key="getResearcher" 
                             ObjectType="{x:Type controller:ResearcherController}"
                             MethodName="GetResearchers">
-        </ObjectDataProvider>
-
-        <ObjectDataProvider x:Key="getPosition" 
-                            ObjectType="{x:Type controller:ResearcherController}"
-                            MethodName="GetPositions">
         </ObjectDataProvider>
 
         <!-- show researcher list template -->
@@ -73,6 +72,7 @@
                 </TextBlock.Text>
             </TextBlock>
         </DataTemplate>
+       
 
         <!-- Response to no result -->
         <Style TargetType="ListView">

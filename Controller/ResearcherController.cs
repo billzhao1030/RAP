@@ -12,7 +12,6 @@ namespace RAP.Controller {
         public static List<Researcher> Researchers { get; private set; }
         public static Researcher selectedResearcher { get; private set; }
 
-        //TODO: how about a list of researchers which is to be displayed?
 
         // load researchers from database
         public static List<Researcher> LoadResearchers() {
@@ -58,13 +57,6 @@ namespace RAP.Controller {
 
         public static List<Researcher> GetResearchers() {
             return Researchers;
-        }
-
-        public static List<Position> GetPositions() {
-            if(selectedResearcher != null) {
-                return ((Staff)selectedResearcher).Positions;
-            }
-            return null; 
         }
     }
 }

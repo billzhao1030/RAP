@@ -40,7 +40,12 @@ namespace RAP.View {
         }
 
         private void ReportButton_Click(object sender, RoutedEventArgs e) {
-            
+            if (ReportView.Current == null) {
+                ReportView report = new ReportView();
+                report.Show();
+            } else {
+                ReportView.Current.Activate();
+            }
         }
     }
 }

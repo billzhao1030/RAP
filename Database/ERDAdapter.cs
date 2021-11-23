@@ -118,8 +118,8 @@ namespace RAP.Database {
 
                         // fetch the position list (sorted)
                         rdr.Close();
-                        MySqlCommand innerCommand2 = new MySqlCommand("select * from position where id = '" + r.Id + "'", conn);
-                        rdr = innerCommand2.ExecuteReader();
+                        MySqlCommand getPositions = new MySqlCommand("select * from position where id = '" + r.Id + "'", conn);
+                        rdr = getPositions.ExecuteReader();
 
                         while (rdr.Read()) {
                             // only get the previous position
@@ -204,6 +204,38 @@ namespace RAP.Database {
                 if (rdr != null) { rdr.Close(); }
                 if (conn != null) { conn.Close(); }
             }
+        }
+
+        // return a list of researcher id (with duplication), represent the count of publications in previous 3 years
+        public static List<int> FetchAuthorPublicationCount() {
+            List<int> authorIDs = new List<int>();
+
+            MySqlConnection conn = GetConnection();
+            MySqlDataReader rdr = null;
+
+            try {
+                conn.Open();
+
+                MySqlCommand getAuthorIDs = new MySqlCommand("select researcher_publication.researcher_id, publication.year " +
+                                                             "from researcher_publication, publication " +
+                                                             "where researcher_publication.doi = publication.doi", conn);
+                rdr = getAuthorIDs.ExecuteReader();
+
+                int currentYear = DateTime.Today.Year;
+                while (rdr.Read()) {
+                    int year = rdr.GetInt32(1);
+                    if (year < currentYear && year >= currentYear - 3) {
+                        authorIDs.Add(rdr.GetInt32(0));
+                    }
+                }
+            } catch (MySqlException e) {
+                Console.WriteLine("Error connecting to the Database: " + e);
+            } finally {
+                if (rdr != null) { rdr.Close(); }
+                if (conn != null) { conn.Close(); }
+            }
+
+            return authorIDs;
         }
     }
 }

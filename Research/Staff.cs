@@ -10,7 +10,8 @@ namespace RAP.Research {
         public List<string> Supervisees { get; set; }
         public string CurrentLevelName { get { return EnumStringConverter.GetDescription(CurrentLevel); } }
 
-        
+        public int LastThreeYearPubCount { get; set; }
+        public double ReportPerformance { get { return LastThreeYearPubCount / 3.0 / ExpectedNumPublications; } }
 
         public List<string> GetSuperviees() {
             return Supervisees;

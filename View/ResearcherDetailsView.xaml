@@ -90,7 +90,7 @@
 
         <!-- Positions list -->
         <Label Content="Previous Positions" Grid.Row="10" Style="{StaticResource HeaderStyle}"/>
-        <ListBox Grid.Row="11" Grid.ColumnSpan="4" ItemsSource="{Binding Source={StaticResource getPosition}}" ItemTemplate="{StaticResource showPreviousPositions}"/>
+        <ListBox Grid.Row="11" Grid.ColumnSpan="4" ItemsSource="{Binding Positions}" ItemTemplate="{StaticResource showPreviousPositions}"/>
         
         <!-- Tenure -->
         <Label Content="Tenure:" Grid.Row="12" Style="{StaticResource LabelStyle}"/>
