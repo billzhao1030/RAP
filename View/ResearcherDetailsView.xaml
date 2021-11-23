@@ -90,7 +90,7 @@
 
         <!-- Positions list -->
         <Label Content="Previous Positions" Grid.Row="10" Style="{StaticResource HeaderStyle}"/>
-        <ListBox Grid.Row="11" Grid.ColumnSpan="4" ItemsSource="{Binding Positions}" ItemTemplate="{StaticResource showPreviousPositions}"/>
+        <ListBox Grid.Row="11" Grid.ColumnSpan="4" ItemsSource="{Binding Positions}" ItemTemplate="{StaticResource showPreviousPositions}" Background="Beige"/>
         
         <!-- Tenure -->
         <Label Content="Tenure:" Grid.Row="12" Style="{StaticResource LabelStyle}"/>
@@ -108,13 +108,13 @@
         <Label Content="Supervision(s):" Grid.Row="14" Style="{StaticResource LabelStyle}"/>
         <TextBlock x:Name="supervisionCount" Grid.Row="14" Grid.Column="1" Style="{StaticResource FieldStyle}" Text="{Binding Path=Supervisees.Count}"/>
         <Button x:Name="ShowSupervisions" Grid.Row="14" Grid.Column="2" Content="Show Names" 
-                Width="100" Margin="0,5,0,5" Click="ShowSupervisions_Click"/>
+                Width="100" Margin="0,5,0,5" Click="ShowSupervisions_Click" Style="{StaticResource normalButton}"/>
 
         <!-- Publications num -->
         <Label Content="Publication(s):" Grid.Row="15" Style="{StaticResource LabelStyle}"/>
         <TextBlock Grid.Row="15" Grid.Column="1" Style="{StaticResource FieldStyle}" Text="{Binding Path=Publications.Count}"/>
         <Button x:Name="CumulativeCount" Grid.Row="15" Grid.Column="2" Content="Cumulative Count" 
-                Width="100" Margin="0,5,0,5" Click="CumulativeCount_Click"/>
+                Width="100" Margin="0,5,0,5" Click="CumulativeCount_Click" Style="{StaticResource normalButton}"/>
 
         <!-- Publication list view -->
         <local:PublicationListView x:Name="PList" Grid.Row="16" Grid.ColumnSpan="4"/>

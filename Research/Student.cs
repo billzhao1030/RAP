@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+/** Student class
+ *  Author: Xunyi Zhao
+ */
 
 namespace RAP.Research {
     public class Student : Researcher {

@@ -1,16 +1,20 @@
-﻿using System;
+﻿
+/** Publication controller class
+ *  Author: Xunyi Zhao
+ *  Date: 23/11/2021
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using RAP.Database;
 using RAP.Research;
 
 namespace RAP.Controller {
     public static class PublicationController {
-        public static Publication selectedPublication { get; private set; }
-        public static List<string> PublicationYears { get; private set; }
-        public static bool Ascending { get; private set; }
+        public static Publication selectedPublication { get; private set; } // The publication that user select
+        public static List<string> PublicationYears { get; private set; } // The list of years, from utas_start to now
+        public static bool Ascending { get; private set; } // The sorting way
 
 
         // load the full details in PublicationDetailsView
@@ -33,6 +37,7 @@ namespace RAP.Controller {
             return null;
         }
 
+        // Sort the publication list (ascending or descending)
         private static List<Publication> Sorting(List<Publication> publications) {
             if (Ascending) {
                 return publications.OrderBy(x => x.Year).ThenBy(x => x.Title).ToList();
@@ -41,13 +46,15 @@ namespace RAP.Controller {
             }
         }
 
+        // Invert the displayed publication list
         public static List<Publication> Invert() {
-            Ascending = !Ascending;
+            Ascending = !Ascending; // Invert the sort way
             Researcher researcher = ResearcherController.selectedResearcher;
 
             return Sorting(researcher.Publications);
         }
 
+        // Filter the displayed publication list by year range
         public static List<Publication> FilterByYear(int year1, int year2) {
             int start = Math.Min(year1, year2);
             int end = Math.Max(year1, year2);
@@ -59,6 +66,7 @@ namespace RAP.Controller {
             return Sorting(filter.ToList());
         }
 
+        // Fetch the details of a selected publication (if selected)
         public static void LoadPublicationDetails(object selected) {
             if (selected != null) {
                 selectedPublication = (Publication)selected;
@@ -67,6 +75,7 @@ namespace RAP.Controller {
             }
         }
 
+        // Cumulative count function, return a tuple <year, count>
         public static List<Tuple<int, int>> CumulativeCount() {
             List<Tuple<int, int>> table = new List<Tuple<int, int>>();
             Researcher researcher = ResearcherController.selectedResearcher;

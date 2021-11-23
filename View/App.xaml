@@ -1,4 +1,7 @@
-﻿<Application x:Class="RAP.View.App"
+﻿
+<!-- The basic application static resources that other views need -->
+    
+<Application x:Class="RAP.View.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -6,24 +9,45 @@
              xmlns:research="clr-namespace:RAP.Research"
              xmlns:controller="clr-namespace:RAP.Controller"
              StartupUri="MainWindow.xaml">
+    
     <Application.Resources>
         <!-- The display styles definition -->
+        <!-- Header text style -->
         <Style x:Key="HeaderStyle" TargetType="Label">
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontSize" Value="16" />
         </Style>
 
+        <!-- Field text style -->
         <Style x:Key="FieldStyle" TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="TextWrapping" Value="Wrap" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Foreground" Value="Black" />
         </Style>
-
+        
+        <!-- Label text style -->
         <Style x:Key="LabelStyle" TargetType="Label">
             <Setter Property="FontWeight" Value="Regular"/>
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <!-- Close window button style -->
+        <Style x:Key="CloseWindow" TargetType="Button">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Background" Value="AliceBlue"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+        
+        <!-- Normal button style -->
+        <Style x:Key="normalButton" TargetType="Button">
+            <Setter Property="Background" Value="#f9fbe5"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
         </Style>
         
         <!-- Convertor of Enum and String -->
@@ -36,18 +60,20 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
 
+        <!-- Content of ComboBox in ReportView -->
         <ObjectDataProvider x:Key="performanceCategory" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
             <ObjectDataProvider.MethodParameters>
                 <x:Type TypeName="controller:PerformanceLevel"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
 
+        <!-- Get researcher list for display -->
         <ObjectDataProvider x:Key="getResearcher" 
                             ObjectType="{x:Type controller:ResearcherController}"
                             MethodName="GetResearchers">
         </ObjectDataProvider>
 
-        <!-- show researcher list template -->
+        <!-- Show researcher list name format template -->
         <DataTemplate x:Key="showResearcherName">
             <TextBlock Style="{StaticResource FieldStyle}">
                 <TextBlock.Text>
@@ -60,7 +86,7 @@
             </TextBlock>
         </DataTemplate>
 
-        <!-- show previous positions of staff -->
+        <!-- Show previous positions of staff -->
         <DataTemplate x:Key="showPreviousPositions">
             <TextBlock Style="{StaticResource FieldStyle}">
                 <TextBlock.Text>
@@ -72,9 +98,8 @@
                 </TextBlock.Text>
             </TextBlock>
         </DataTemplate>
-       
 
-        <!-- Response to no result -->
+        <!-- Response to no result for list view and list box-->
         <Style TargetType="ListView">
             <Style.Triggers>
                 <Trigger Property="HasItems" Value="False">
@@ -102,6 +127,5 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-
     </Application.Resources>
 </Application>

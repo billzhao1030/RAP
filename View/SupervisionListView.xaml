@@ -9,9 +9,14 @@
     <StackPanel Orientation="Vertical">
         <Grid>
             <Label Content="Supervision List" DockPanel.Dock="Left" Style="{StaticResource HeaderStyle}"/>
-            <Button Content="x" HorizontalAlignment="Right" Click="Button_Click" Height="30" Width="30" />
+            <!-- Close window button -->
+            <Button Height="30" Width="30" Margin="2,2,2,2" Click="Button_Click" Style="{StaticResource CloseWindow}">
+                <StackPanel VerticalAlignment="Center" >
+                    <TextBlock Text="X"/>
+                </StackPanel>
+            </Button>
         </Grid>
-        
-        <ListBox Grid.Row="1" ItemsSource="{Binding Supervisees}" BorderThickness="0"/>
+
+        <ListBox Grid.Row="1" ItemsSource="{Binding Supervisees}" BorderThickness="0" Background="Beige"/>
     </StackPanel>
 </UserControl>

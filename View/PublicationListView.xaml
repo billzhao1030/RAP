@@ -6,23 +6,24 @@
       xmlns:local="clr-namespace:RAP.View"
       mc:Ignorable="d">
 
-    <StackPanel Orientation="Vertical">
+    <StackPanel Orientation="Vertical" Background="Beige">
         <!-- Header -->
         <DockPanel>
             <Label Content="Publications" DockPanel.Dock="Left" Style="{StaticResource HeaderStyle}"/>
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" 
                         HorizontalAlignment="Right" VerticalAlignment="Top"
                         ScrollViewer.VerticalScrollBarVisibility="Auto" MinWidth="150">
-                <ComboBox x:Name="PubY1" Height="25" Width="50"/>
+                <ComboBox x:Name="PubY1" Height="25" Width="58"/>
                 <Label Content="to" VerticalContentAlignment="Center"/>
-                <ComboBox x:Name="PubY2" Height="25" Width="50"/>
-                <Button x:Name="FilterYear" Height="25" Width="55" Content="Filter" Margin="10,5,0,5" Click="FilterYear_Click"/>
-                <Button x:Name="InvertYear" Height="25" Width="55" Content="Invert" Margin="15,5,0,5" Click="InvertYear_Click"/>
+                <ComboBox x:Name="PubY2" Height="25" Width="58"/>
+                <Button x:Name="FilterYear" Height="25" Width="55" Content="Filter" Margin="9,5,0,5" Click="FilterYear_Click" Style="{StaticResource normalButton}"/>
+                <Button x:Name="InvertYear" Height="25" Width="55" Content="Invert" Margin="9,5,0,5" Click="InvertYear_Click" Style="{StaticResource normalButton}"/>
             </StackPanel>
         </DockPanel>
 
         <!-- Publication list -->
-        <ListView x:Name="PublicationList" SelectionChanged="PublicationList_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView x:Name="PublicationList" SelectionChanged="PublicationList_SelectionChanged" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="Beige">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Year}" Header="Year"/>

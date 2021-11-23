@@ -8,15 +8,22 @@
 
     <StackPanel Orientation="Vertical">
         <Grid>
+            <!-- Title -->
             <Label Content="CumulativeCount" DockPanel.Dock="Left" Style="{StaticResource HeaderStyle}"/>
-            <Button Content="x" HorizontalAlignment="Right" Height="30" Width="30" Click="Button_Click"/>
+            <!-- Close window button -->
+            <Button Height="30" Width="30" Margin="2,2,2,2" Click="Button_Click" Style="{StaticResource CloseWindow}">
+                <StackPanel VerticalAlignment="Center" >
+                    <TextBlock Text="X"/>
+                </StackPanel>
+            </Button>
         </Grid>
-        
 
-        <ListView x:Name="CumulativeCountTable" BorderThickness="0" HorizontalAlignment="Left" HorizontalContentAlignment="Center">
+        <!-- The cumulative count table -->
+        <ListView x:Name="CumulativeCountTable" BorderThickness="0"  
+                  HorizontalContentAlignment="Center" Background="Beige">
             <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Year" DisplayMemberBinding="{Binding Item1}" Width="100" />
+                <GridView >
+                    <GridViewColumn Header="Year" DisplayMemberBinding="{Binding Item1}" Width="100"/>
                     <GridViewColumn Header="Publication(s)" DisplayMemberBinding="{Binding Item2}" Width="200"/>
                 </GridView>
             </ListView.View>

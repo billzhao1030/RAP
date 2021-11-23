@@ -1,8 +1,10 @@
-﻿using System;
+﻿
+/** ResearcherController class
+ *  Author: Xunyi Zhao
+ */
+
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using RAP.Database;
 using RAP.Research;
 
@@ -29,6 +31,7 @@ namespace RAP.Controller {
             }
         }
 
+        // Filter displayed researchers by the name entered and the selected type
         public static List<Researcher> FilterBy(string name, object type) {
             List<Researcher> subGroup = Researchers;
             PositionLevel level = EnumStringConverter.ParseEnum<PositionLevel>(type.ToString());
@@ -55,6 +58,7 @@ namespace RAP.Controller {
             return subGroup;
         }
 
+        // An assistant method helping the statc resource in app.xaml
         public static List<Researcher> GetResearchers() {
             return Researchers;
         }

@@ -1,4 +1,8 @@
 ﻿
+/** Publication class (with PublicationType enum)
+ *  Author: Xunyi Zhao
+ */
+
 using System;
 
 namespace RAP.Research {
@@ -16,6 +20,6 @@ namespace RAP.Research {
         public PublicationType Type { get; set; }
         public string CiteAs { get; set; }
         public DateTime Available { get; set; }
-        public int Age { get { return DateTime.Today.Year - Year; } }
+        public int Age { get { return DateTime.Today.Year - Year; } } // The number of years since it published
     }
 }

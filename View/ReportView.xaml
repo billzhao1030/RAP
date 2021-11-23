@@ -5,25 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RAP.View"
         mc:Ignorable="d"
-        Title="ReportView" MinHeight="300" MinWidth="450" SizeToContent="WidthAndHeight">
-    <StackPanel Orientation="Vertical">
-
+        Title="Achievement Reports" MinHeight="300" MinWidth="450" SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen">
+    <StackPanel Orientation="Vertical" Background="Beige">
         <StackPanel Orientation="Horizontal">
             <Label Content="Select Level: "/>
             <ComboBox x:Name="PerformanceLevel" SelectionChanged="PerformanceLevel_SelectionChanged"
-                      ItemsSource="{Binding Source={StaticResource performanceCategory}}" Width="130">
+                      ItemsSource="{Binding Source={StaticResource performanceCategory}}" Width="130" Margin="5,2,5,2">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Converter={StaticResource Convertor}, ConverterParameter=PerformanceLevel}"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <Button x:Name="CopyEmailButton" Content="Copy Email" Click="CopyEmailButton_Click" Margin="5,0"/>
+            <Button x:Name="CopyEmailButton" Content="Copy Email" Click="CopyEmailButton_Click" Margin="5,2,5,2" Style="{StaticResource normalButton}"/>
         </StackPanel>
 
 
         <!-- Report -->
-        <ListView x:Name="PerformanceTable" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        <ListView x:Name="PerformanceTable" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="Beige">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Performance" DisplayMemberBinding="{Binding ReportPerformance, StringFormat=P1}" Width="80"/>

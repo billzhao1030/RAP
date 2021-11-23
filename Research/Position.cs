@@ -1,4 +1,8 @@
 ﻿
+/** Position class
+ *  Author: Xunyi Zhao
+ */
+
 using System;
 using System.ComponentModel;
 
@@ -17,6 +21,6 @@ namespace RAP.Research {
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
         public PositionLevel Level { get; set; }
-        public string Title { get { return EnumStringConverter.GetDescription(Level); } }
+        public string Title { get { return EnumStringConverter.GetDescription(Level); } } // The user-friendly description of the position
     }
 }

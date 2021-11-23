@@ -1,12 +1,12 @@
-﻿using System;
+﻿
+/** The ERDAdaptor class
+ *  Author: Xunyi Zhao
+ */
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
-using RAP;
 using RAP.Research;
-using System.Diagnostics;
 
 namespace RAP.Database {
     public static class ERDAdapter {
@@ -30,7 +30,7 @@ namespace RAP.Database {
             return conn;
         }
 
-        // get the basic information of the list of researchers for display in ResearcherListView
+        // Get the basic information of the list of researchers for display in ResearcherListView
         public static List<Researcher> FetchBasicResearcherDetails() {
             List<Researcher> researchers = new List<Researcher>();
 
@@ -44,7 +44,6 @@ namespace RAP.Database {
                 rdr = getResearcherBasic.ExecuteReader();
 
                 while (rdr.Read()) {
-                    // try better approach 
                     if (rdr.GetString(1) == "Staff") {
                         researchers.Add(new Staff {
                             Id = rdr.GetInt32(0),
@@ -76,7 +75,7 @@ namespace RAP.Database {
             return researchers;
         }
 
-        // get the full details of a specific researcher
+        // Get the full details of a specific researcher
         public static void FetchFullResearcherDetails(Researcher r) {
             List<Publication> publications = new List<Publication>();
 
@@ -153,7 +152,7 @@ namespace RAP.Database {
                     }
                 }
 
-                // get the publication list (basic)
+                // Get the publication list (basic)
                 rdr.Close();
                 MySqlCommand getPublicationList = new MySqlCommand("select publication.doi, year, title from publication, researcher_publication " +
                                                                    "where researcher_publication.doi = publication.doi and " +
@@ -179,7 +178,7 @@ namespace RAP.Database {
 
        
 
-        // get full details of the given publication
+        // Get full details of the given publication
         public static void FetchFullPublicationDetails(Publication p) {
             MySqlConnection conn = GetConnection();
             MySqlDataReader rdr = null;
@@ -206,7 +205,7 @@ namespace RAP.Database {
             }
         }
 
-        // return a list of researcher id (with duplication), represent the count of publications in previous 3 years
+        // Return a list of researcher id (with duplication), represent the count of publications in previous 3 years
         public static List<int> FetchAuthorPublicationCount() {
             List<int> authorIDs = new List<int>();
 

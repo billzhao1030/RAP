@@ -1,8 +1,10 @@
-﻿using System;
+﻿
+/** Staff class
+ *  Author: Xunyi Zhao
+ */
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RAP.Research {
     public class Staff : Researcher {
@@ -10,13 +12,7 @@ namespace RAP.Research {
         public List<string> Supervisees { get; set; }
         public string CurrentLevelName { get { return EnumStringConverter.GetDescription(CurrentLevel); } }
 
-        public int LastThreeYearPubCount { get; set; }
-        public double ReportPerformance { get { return LastThreeYearPubCount / 3.0 / ExpectedNumPublications; } }
-
-        public List<string> GetSuperviees() {
-            return Supervisees;
-        }
-
+        // The expected number of publications according to the position level
         private double ExpectedNumPublications {
             get {
                 switch(CurrentLevel) {
@@ -30,7 +26,7 @@ namespace RAP.Research {
             }
         }
 
-        // calculate the previous three years publication average count
+        // Calculate the previous three years publication average count
         public double ThreeYearAverage {
             get {
                 int num = 0;
@@ -49,5 +45,9 @@ namespace RAP.Research {
         }
 
         public double Performance { get { return ThreeYearAverage / ExpectedNumPublications; } }
+
+        // Two assistant field for report generation
+        public int LastThreeYearPubCount { get; set; }
+        public double ReportPerformance { get { return LastThreeYearPubCount / 3.0 / ExpectedNumPublications; } }
     }
 }
