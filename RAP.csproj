@@ -63,7 +63,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller\ReportController.cs" />
-    <Compile Include="Convertor.cs" />
+    <Compile Include="View\Convertor.cs" />
     <Compile Include="EnumStringConverter.cs" />
     <Compile Include="View\CumulativeCountView.xaml.cs">
       <DependentUpon>CumulativeCountView.xaml</DependentUpon>

@@ -24,6 +24,11 @@
 
         <!-- Report -->
         <ListView x:Name="PerformanceTable" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="Beige">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Performance" DisplayMemberBinding="{Binding ReportPerformance, StringFormat=P1}" Width="80"/>
@@ -43,6 +48,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Position" DisplayMemberBinding="{Binding CurrentLevelName}" Width="140"/>
+                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" />
                 </GridView>
             </ListView.View>
         </ListView>

@@ -13,7 +13,7 @@
         <Label Content="Researcher" DockPanel.Dock="Top" Style="{StaticResource HeaderStyle}"/>
         
         <!-- Generate report -->
-        <Button Content="Generate Report" DockPanel.Dock="Top" Margin="5" Click="ReportButton_Click" Style="{StaticResource normalButton}"/>
+        <Button Content="Generate Report" DockPanel.Dock="Top" Margin="3" Click="ReportButton_Click" Style="{StaticResource normalButton}"/>
         
         <!-- Search function -->
         <DockPanel DockPanel.Dock="Top">
