@@ -48,9 +48,9 @@ namespace RAP.Controller {
 
         private static List<Staff> FormatReport(List<Staff> staffs, bool ascending) {
             if (ascending) {
-                staffs.Sort((s1, s2) => s2.ReportPerformance.CompareTo(s1.ReportPerformance));
-            } else {
                 staffs.Sort((s1, s2) => s1.ReportPerformance.CompareTo(s2.ReportPerformance));
+            } else {
+                staffs.Sort((s1, s2) => s2.ReportPerformance.CompareTo(s1.ReportPerformance));
             }
 
             return staffs;
