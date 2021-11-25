@@ -65,9 +65,7 @@ namespace RAP.Controller {
             return selectByLevel.ToList();
         }
 
-        public static List<Staff> GenerateReport(object level) {
-            PerformanceLevel reportLevel = EnumStringConverter.ParseEnum<PerformanceLevel>(level.ToString());
-
+        public static List<Staff> GenerateReport(PerformanceLevel reportLevel) {
             switch (reportLevel) {
                 case PerformanceLevel.Poor:
                     return FormatReport(chooseLevel(levelValues[0], levelValues[1]), true);
@@ -82,8 +80,7 @@ namespace RAP.Controller {
             }
         }
 
-        public static void LoadEmail(ItemCollection staff) {
-            List<Staff> staffList = staff.OfType<Staff>().ToList();
+        public static void LoadEmail(List<Staff> staffList) {
             string emails = "";
 
             foreach (Staff s in staffList) {

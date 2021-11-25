@@ -67,12 +67,10 @@ namespace RAP.Controller {
         }
 
         // Fetch the details of a selected publication (if selected)
-        public static void LoadPublicationDetails(object selected) {
-            if (selected != null) {
-                selectedPublication = (Publication)selected;
+        public static void LoadPublicationDetails(Publication selected) {
+            selectedPublication = selected;
 
-                ERDAdapter.FetchFullPublicationDetails(selectedPublication);
-            }
+            ERDAdapter.FetchFullPublicationDetails(selectedPublication);
         }
 
         // Cumulative count function, return a tuple <year, count>

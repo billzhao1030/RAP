@@ -23,19 +23,15 @@ namespace RAP.Controller {
         }
 
         // load selected researcher details
-        public static void LoadCurrentResearcher(object selected) {
-            if (selected != null) { 
-                selectedResearcher = (Researcher)selected;
+        public static void LoadCurrentResearcher(Researcher selected) {
+            selectedResearcher = selected;
 
-                ERDAdapter.FetchFullResearcherDetails(selectedResearcher);
-            }
+            ERDAdapter.FetchFullResearcherDetails(selectedResearcher);
         }
 
         // Filter displayed researchers by the name entered and the selected type
-        public static List<Researcher> FilterBy(string name, object type) {
+        public static List<Researcher> FilterBy(string value, PositionLevel level) {
             List<Researcher> subGroup = Researchers;
-            PositionLevel level = EnumStringConverter.ParseEnum<PositionLevel>(type.ToString());
-            string value = name.ToUpper();
 
             if (level != PositionLevel.AllResearcher) {
                 var filter =

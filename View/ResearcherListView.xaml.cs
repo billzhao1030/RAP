@@ -26,17 +26,24 @@ namespace RAP.View {
 
         private void SearchBox_KeyUp(object sender, KeyEventArgs e) {
             if (e.Key == Key.Enter) {
-                ResearcherList.ItemsSource = ResearcherController.FilterBy(SearchBox.Text, Categories.SelectedItem);
+                PositionLevel level = EnumStringConverter.ParseEnum<PositionLevel>(Categories.SelectedItem.ToString());
+                ResearcherList.ItemsSource = ResearcherController.FilterBy(SearchBox.Text.ToUpper(), level);
             }
         }
 
         private void ResearcherList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            ResearcherController.LoadCurrentResearcher(ResearcherList.SelectedItem);
+            object selected = ResearcherList.SelectedItem;
+            if (selected != null) {
+                Researcher r = (Researcher)selected;
+                ResearcherController.LoadCurrentResearcher(r);
+            }
             ((MainWindow)(Application.Current.MainWindow)).UpdateResearcherDetailsView();
         }
 
         private void Categories_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            ResearcherList.ItemsSource = ResearcherController.FilterBy(SearchBox.Text, Categories.SelectedItem);
+            PositionLevel level = EnumStringConverter.ParseEnum<PositionLevel>(Categories.SelectedItem.ToString());
+
+            ResearcherList.ItemsSource = ResearcherController.FilterBy(SearchBox.Text.ToUpper(), level);
         }
 
         private void ReportButton_Click(object sender, RoutedEventArgs e) {

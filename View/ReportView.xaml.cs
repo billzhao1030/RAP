@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using RAP.Controller;
+using RAP.Research;
 
 namespace RAP.View {
     /// <summary>
@@ -34,11 +35,15 @@ namespace RAP.View {
         }
 
         private void CopyEmailButton_Click(object sender, RoutedEventArgs e) {
-            ReportController.LoadEmail(PerformanceTable.Items);
+            List<Staff> staffList = PerformanceTable.Items.OfType<Staff>().ToList();
+
+            ReportController.LoadEmail(staffList);
         }
 
         private void PerformanceLevel_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            PerformanceTable.ItemsSource = ReportController.GenerateReport(PerformanceLevel.SelectedValue);
+            PerformanceLevel reportLevel = EnumStringConverter.ParseEnum<PerformanceLevel>(PerformanceLevel.SelectedValue.ToString());
+
+            PerformanceTable.ItemsSource = ReportController.GenerateReport(reportLevel);
         }
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RAP.Research;
 using RAP.Controller;
 
 namespace RAP.View {
@@ -45,7 +46,12 @@ namespace RAP.View {
         }
 
         private void PublicationList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            PublicationController.LoadPublicationDetails(PublicationList.SelectedItem);
+            object selected = PublicationList.SelectedItem;
+            if (selected != null) {
+                Publication p = (Publication)selected;
+                PublicationController.LoadPublicationDetails(p);
+            }
+
             ((MainWindow)Application.Current.MainWindow).SwitchFuncView(FuncView.PublicationDetail);
         }
     }
