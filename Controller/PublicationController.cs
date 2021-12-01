@@ -1,7 +1,9 @@
 ﻿
 /** Publication controller class
- *  Author: Xunyi Zhao
- *  Date: 23/11/2021
+ * 
+ *  This file provides control to the views related to publication
+ * 
+ *  Author: Xunyi Zhao, Michael Skrinnikoff, Callum O'Rourke
  */
 
 using System;
@@ -12,23 +14,24 @@ using RAP.Research;
 
 namespace RAP.Controller {
     public static class PublicationController {
+
         public static Publication selectedPublication { get; private set; } // The publication that user select
         public static List<string> PublicationYears { get; private set; } // The list of years, from utas_start to now
         public static bool Ascending { get; private set; } // The sorting way
 
 
-        // load the full details in PublicationDetailsView
+        // Load the full details in PublicationDetailsView
         public static List<Publication> LoadPublications() {
             Researcher researcher = ResearcherController.selectedResearcher;
-            Ascending = false;
+            Ascending = false; // Initially Descending
 
             if (researcher != null) {
-                var UtasStart = researcher.UtasStart.Year;
-                var range = DateTime.Today.Year - UtasStart + 1;
+                var UtasStart = researcher.UtasStart.Year; // Start year
+                var range = DateTime.Today.Year - UtasStart + 1; // The range from start year to now
 
                 PublicationYears = Enumerable.Range(UtasStart, range).Select(o => o.ToString()).ToList();
 
-                // add a default empty value for start
+                // Add a default empty value for start
                 PublicationYears.Insert(0, "");
 
                 return Sorting(researcher.Publications);
@@ -36,6 +39,7 @@ namespace RAP.Controller {
 
             return null;
         }
+
 
         // Sort the publication list (ascending or descending)
         private static List<Publication> Sorting(List<Publication> publications) {
@@ -46,13 +50,15 @@ namespace RAP.Controller {
             }
         }
 
+
         // Invert the displayed publication list
         public static List<Publication> Invert() {
-            Ascending = !Ascending; // Invert the sort way
+            Ascending = !Ascending; // Invert the sorting way
             Researcher researcher = ResearcherController.selectedResearcher;
 
             return Sorting(researcher.Publications);
         }
+
 
         // Filter the displayed publication list by year range
         public static List<Publication> FilterByYear(int year1, int year2) {
@@ -66,12 +72,14 @@ namespace RAP.Controller {
             return Sorting(filter.ToList());
         }
 
+
         // Fetch the details of a selected publication (if selected)
         public static void LoadPublicationDetails(Publication selected) {
             selectedPublication = selected;
 
             ERDAdapter.FetchFullPublicationDetails(selectedPublication);
         }
+
 
         // Cumulative count function, return a tuple <year, count>
         public static List<Tuple<int, int>> CumulativeCount() {
@@ -86,6 +94,7 @@ namespace RAP.Controller {
                     var query = from publication in researcher.Publications
                                 where publication.Year == i
                                 select publication;
+
                     table.Add(new Tuple<int, int>(i, query.Count()));
                 }
 

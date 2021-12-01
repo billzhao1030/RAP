@@ -1,6 +1,10 @@
 ﻿
 /** The ERDAdaptor class
- *  Author: Xunyi Zhao,,,,
+ * 
+ *  This file provide the connection to the database
+ *  And fetch the details from database for controller classes
+ *  
+ *  Author: Xunyi Zhao, Michael Skrinnikoff, Callum O'Rourke
  */
 
 using System;
@@ -11,28 +15,32 @@ using RAP.Research;
 namespace RAP.Database {
     public static class ERDAdapter {
 
-        // The connection to romote database
+        // The connection to remote database
         private static MySqlConnection conn = null;
 
         // The details to login to the database
         private const string data = "kit206";
         private const string user = "kit206";
-        private const string pass = "kit206";
-        private const string serv = "alacritas.cis.utas.edu.au";
+        private const string password = "kit206";
+        private const string server = "alacritas.cis.utas.edu.au";
         
-        // Return the database connection
+
+
+        // Return the database connection, make sure there's only one connection exist
         private static MySqlConnection GetConnection() {
             if (conn == null) {
-                string connectionDetails = String.Format("Database={0};Data Source={1};User Id={2};Password={3}", data, serv, user, pass);
+                string connectionDetails = String.Format("Database={0};Data Source={1};User Id={2};Password={3}", data, server, user, password);
                 conn = new MySqlConnection(connectionDetails);
             }
 
             return conn;
         }
 
+
         // Get the basic information of the list of researchers for display in ResearcherListView
+        // Including the ID, staff type, name, title, position level and email
         public static List<Researcher> FetchBasicResearcherDetails() {
-            List<Researcher> researchers = new List<Researcher>();
+            List<Researcher> researchers = new List<Researcher>(); // Researcher list that need to be returned
 
             MySqlConnection conn = GetConnection();
             MySqlDataReader rdr = null;
@@ -40,9 +48,11 @@ namespace RAP.Database {
             try {
                 conn.Open();
 
+                // Read all basic information into each researcher
                 MySqlCommand getResearcherBasic = new MySqlCommand("select id, type, given_name, family_name, title, level, email from researcher", conn);
                 rdr = getResearcherBasic.ExecuteReader();
 
+                // Some details like position level won't read into "Student" Researcher
                 while (rdr.Read()) {
                     if (rdr.GetString(1) == "Staff") {
                         researchers.Add(new Staff {
@@ -71,13 +81,16 @@ namespace RAP.Database {
                 if (conn != null) { conn.Close(); }
             }
 
+            // Rearrange the order of the list, according to the name, alphabetically
             researchers.Sort((r1, r2) => r1.FamilyName.CompareTo(r2.FamilyName));
+
             return researchers;
         }
 
-        // Get the full details of a specific researcher
+
+        // Get the full details of a specific researcher, which need to be displayed in ResearcherDetailsView
         public static void FetchFullResearcherDetails(Researcher r) {
-            List<Publication> publications = new List<Publication>();
+            List<Publication> publications = new List<Publication>(); // A list of publication current researcher has
 
             MySqlConnection conn = GetConnection();
             MySqlDataReader rdr = null;
@@ -85,6 +98,7 @@ namespace RAP.Database {
             try {
                 conn.Open();
 
+                // Read details in to the current researcher
                 MySqlCommand getResearcherDetail = new MySqlCommand("select unit, campus, photo, degree, supervisor_id, utas_start, " +
                                                         "current_start from researcher where id = '" + r.Id + "'", conn);
                 rdr = getResearcherDetail.ExecuteReader();
@@ -92,17 +106,20 @@ namespace RAP.Database {
                 if (rdr.Read()) {
                     r.Unit = rdr.GetString(0);
                     r.Photo = rdr.GetString(2);
+
+                    // For Cradle Coast case remove space, since the enum type is CradleCoast
                     r.Campus = EnumStringConverter.ParseEnum<Campus>(rdr.GetString(1).Replace(" ", ""));
                     r.UtasStart = rdr.GetDateTime(5);
                     r.CurrentStart = rdr.GetDateTime(6);
 
+                    // Staff need to have previous positions and supervisees
                     if (r is Staff) {
                         var s = r as Staff;
 
                         List<string> supervisees = new List<string>();
                         List<Position> positions = new List<Position>();
 
-                        // fetch the supervision name list (sorted)
+                        // Fetch the supervision name list (sorted)
                         rdr.Close();
                         MySqlCommand getSupervisionList = new MySqlCommand("select title, given_name, family_name from researcher " +
                                                                            "where supervisor_id = " + r.Id, conn);
@@ -121,7 +138,7 @@ namespace RAP.Database {
                         rdr = getPositions.ExecuteReader();
 
                         while (rdr.Read()) {
-                            // only get the previous position
+                            // only get the previous position (the end year is null)
                             if (!rdr.IsDBNull(3)) {
                                 positions.Add(new Position {
                                     Level = EnumStringConverter.ParseEnum<PositionLevel>(rdr.GetString(1)),
@@ -132,16 +149,18 @@ namespace RAP.Database {
                             }
                         }
                         
-                        positions.Sort((p1, p2) => p2.Start.CompareTo(p1.Start)); // sort based on the time
+                        // sort the position list according to the datetime
+                        positions.Sort((p1, p2) => p2.Start.CompareTo(p1.Start)); 
+
                         s.Positions = positions;
-                        
                     } else if (r is Student) {
                         var s = r as Student;
                         s.Degree = rdr.GetString(3);
 
                         int supervisorID = rdr.GetInt32(4);
 
-                        rdr.Close(); // need to be closed or not?
+                        // Read the supervisor names 
+                        rdr.Close();
                         MySqlCommand getSupervisor = new MySqlCommand("select title, given_name, family_name from researcher " +
                                                                      "where id = '" + supervisorID + "'", conn);
                         rdr = getSupervisor.ExecuteReader();
@@ -152,7 +171,7 @@ namespace RAP.Database {
                     }
                 }
 
-                // Get the publication list (basic)
+                // Get the publication list (basic), just include the DOI, Title, year information
                 rdr.Close();
                 MySqlCommand getPublicationList = new MySqlCommand("select publication.doi, year, title from publication, researcher_publication " +
                                                                    "where researcher_publication.doi = publication.doi and " +
@@ -176,9 +195,8 @@ namespace RAP.Database {
             }
         }
 
-       
 
-        // Get full details of the given publication
+        // Get full details of the given publication, which need to be diplayed in PublicaitonListView
         public static void FetchFullPublicationDetails(Publication p) {
             MySqlConnection conn = GetConnection();
             MySqlDataReader rdr = null;
@@ -186,6 +204,7 @@ namespace RAP.Database {
             try {
                 conn.Open();
 
+                // Read all the details for current publoication
                 MySqlCommand getPublicationDetails = new MySqlCommand("select authors, type, cite_as, available from publication " +
                                                                       "where doi = '" + p.Doi + "'", conn);
                 rdr = getPublicationDetails.ExecuteReader();
@@ -196,7 +215,6 @@ namespace RAP.Database {
                     p.CiteAs = rdr.GetString(2);
                     p.Available = rdr.GetDateTime(3);
                 }
-
             } catch (MySqlException e) {
                 Console.WriteLine("Error connecting to the Database: " + e);
             } finally {
@@ -205,7 +223,9 @@ namespace RAP.Database {
             }
         }
 
-        // Return a list of researcher id (with duplication), represent the count of publications in previous 3 years
+
+        // Return a list of researcher id (with duplication)
+        // The number of duplication represent the count of publications for this researcher in previous 3 years
         public static List<int> FetchAuthorPublicationCount() {
             List<int> authorIDs = new List<int>();
 
@@ -215,6 +235,7 @@ namespace RAP.Database {
             try {
                 conn.Open();
 
+                // Only see the publication's author and the year
                 MySqlCommand getAuthorIDs = new MySqlCommand("select researcher_publication.researcher_id, publication.year " +
                                                              "from researcher_publication, publication " +
                                                              "where researcher_publication.doi = publication.doi", conn);

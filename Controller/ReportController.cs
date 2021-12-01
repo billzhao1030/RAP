@@ -1,15 +1,20 @@
-﻿using System;
+﻿
+/** Report controller class
+ * 
+ *  This file provides control to the report view
+ * 
+ *  Author: Xunyi Zhao, Michael Skrinnikoff, Callum O'Rourke
+ */
+
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using RAP.Database;
 using RAP.Research;
 using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace RAP.Controller {
+    // The pre-defined level base on the performance
     public enum PerformanceLevel {
         [Description("Poor Performers")] Poor,
         [Description("Below Expectation")] BelowExpectations,
@@ -18,20 +23,23 @@ namespace RAP.Controller {
     };
 
     public static class ReportController {
-        private static List<Staff> staffs;
+        private static List<Staff> staffs; // All the "Staff" researchers
+
+        // Range for the performance metric (percentage)
         private static double[] levelValues = { 0.0, 0.7, 1.1, 2.0 };
 
-        // get all performances by basic retrieve from database
+
+        // Get all performances by basic retrieve from database
         public static void LoadAllPerformance() {
             List<int> authorIDs = ERDAdapter.FetchAuthorPublicationCount();
             List<Staff> authors;
-
 
             // filter out the staff in researchers
             var getAllStaff = from staff in ResearcherController.Researchers
                               where staff is Staff
                               select staff as Staff;
             authors = getAllStaff.ToList();
+
 
             var getCountPair = from count in authorIDs
                     group count by count into countPair
@@ -46,6 +54,8 @@ namespace RAP.Controller {
             staffs = authors;
         }
 
+
+        // Sort the staffs according to the performance level
         private static List<Staff> FormatReport(List<Staff> staffs, bool ascending) {
             if (ascending) {
                 staffs.Sort((s1, s2) => s1.ReportPerformance.CompareTo(s2.ReportPerformance));
@@ -56,6 +66,8 @@ namespace RAP.Controller {
             return staffs;
         }
 
+
+        // Select subgroup of staffs according to the performance level
         private static List<Staff> chooseLevel(double lower, double upper) {
             var selectByLevel = from subGroup in staffs
                                 where subGroup.ReportPerformance >= lower &&
@@ -65,6 +77,8 @@ namespace RAP.Controller {
             return selectByLevel.ToList();
         }
 
+
+        // Generate each report (filter level then format)
         public static List<Staff> GenerateReport(PerformanceLevel reportLevel) {
             switch (reportLevel) {
                 case PerformanceLevel.Poor:
@@ -80,6 +94,8 @@ namespace RAP.Controller {
             }
         }
 
+
+        // Copy the emails of staffs listed in each report
         public static void LoadEmail(List<Staff> staffList) {
             string emails = "";
 

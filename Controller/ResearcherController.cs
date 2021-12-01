@@ -1,6 +1,9 @@
 ﻿
-/** ResearcherController class
- *  Author: Xunyi Zhao
+/** Researcher controller class
+ * 
+ *  This file provides the control of the views that related to researchers
+ *  
+ *  Author: Xunyi Zhao, Michael Skrinnikoff, Callum O'Rourke
  */
 
 using System.Collections.Generic;
@@ -11,28 +14,34 @@ using RAP.Research;
 namespace RAP.Controller {
     public static class ResearcherController {
 
+        // The list of researchers read from the database
         public static List<Researcher> Researchers { get; private set; }
+        // The selected reseacher in the list view
         public static Researcher selectedResearcher { get; private set; }
 
 
-        // load researchers from database
+
+        // Load researchers from database
         public static List<Researcher> LoadResearchers() {
             Researchers = ERDAdapter.FetchBasicResearcherDetails();
 
             return Researchers;
         }
 
-        // load selected researcher details
+
+        // Load selected researcher details
         public static void LoadCurrentResearcher(Researcher selected) {
             selectedResearcher = selected;
 
             ERDAdapter.FetchFullResearcherDetails(selectedResearcher);
         }
 
+
         // Filter displayed researchers by the name entered and the selected type
         public static List<Researcher> FilterBy(string value, PositionLevel level) {
-            List<Researcher> subGroup = Researchers;
+            List<Researcher> subGroup = Researchers; // Reseachers displayed on the screen
 
+            // First filter by level
             if (level != PositionLevel.AllResearcher) {
                 var filter =
                     from researcher in subGroup
@@ -42,6 +51,7 @@ namespace RAP.Controller {
                 subGroup = filter.ToList();
             }
 
+            // Then by name (trim the front space first)
             if (value.Trim() != "") {
                 var filter =
                     from researcher in subGroup
@@ -54,7 +64,8 @@ namespace RAP.Controller {
             return subGroup;
         }
 
-        // An assistant method helping the statc resource in app.xaml
+
+        // An assistant method helping the static resource in app.xaml (when show the list first time)
         public static List<Researcher> GetResearchers() {
             return Researchers;
         }
