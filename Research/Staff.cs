@@ -1,6 +1,9 @@
 ﻿
 /** Staff class
- *  Author: Xunyi Zhao
+ * 
+ *  This class file provides the definition of Staff entity
+ *  
+ *  Author: Xunyi Zhao, Michael Skrinnikoff, Callum O'Rourke
  */
 
 using System;
@@ -9,8 +12,9 @@ using System.Collections.Generic;
 namespace RAP.Research {
     public class Staff : Researcher {
         public List<Position> Positions { get; set; }
-        public List<string> Supervisees { get; set; }
+        public List<string> Supervisees { get; set; } // The list of supervisee's name
         public string CurrentLevelName { get { return EnumStringConverter.GetDescription(CurrentLevel); } }
+
 
         // The expected number of publications according to the position level
         private double ExpectedNumPublications {
@@ -47,7 +51,8 @@ namespace RAP.Research {
         public double Performance { get { return ThreeYearAverage / ExpectedNumPublications; } }
 
         // Two assistant field for report generation
-        public int LastThreeYearPubCount { get; set; }
-        public double ReportPerformance { get { return LastThreeYearPubCount / 3.0 / ExpectedNumPublications; } }
+        public int LastThreeYearPubCount { get; set; } // The number of publications in last three years
+
+        public double ReportPerformance { get { return LastThreeYearPubCount / 3.0 / ExpectedNumPublications; } } // Same as performance, but for report use
     }
 }

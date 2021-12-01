@@ -1,6 +1,9 @@
 ﻿
-/** Researcher class (abstract)
- *  Author: Xunyi Zhao
+/** Researcher class (abstract class)
+ * 
+ *  This class file provide the abstract definition of Researcher entity
+ * 
+ *  Author: Xunyi Zhao, Michael Skrinnikoff, Callum O'Rourke
  */
 
 using System;
@@ -8,6 +11,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace RAP.Research {
+
+    // The campus name
     public enum Campus {
         Hobart,
         Launceston,
@@ -15,6 +20,8 @@ namespace RAP.Research {
     };
 
     public abstract class Researcher {
+
+        // Attributs directly from database
         public int Id { get; set; }
         public string GivenName { get; set; }
         public string FamilyName { get; set; }
@@ -25,6 +32,8 @@ namespace RAP.Research {
         public string Photo { get; set; }
         public DateTime UtasStart { get; set; }
         public DateTime CurrentStart { get; set; }
+
+        // Extra but necessary attribute
         public List<Publication> Publications { get; set; }
         public PositionLevel CurrentLevel { get; set; }
 
