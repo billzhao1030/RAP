@@ -1,4 +1,12 @@
-﻿using System;
+﻿
+/** Enum processor class
+ * 
+ *  This class file provides the way that convert a string to enum / enum to the description string
+ *  
+ *  Author: Xunyi Zhao, Michael Skrinnikoff, Callum O'Rourke
+ */
+
+using System;
 using System.ComponentModel;
 
 namespace RAP {

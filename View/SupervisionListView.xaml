@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="RAP.View.SupervisionListView"
+﻿
+<UserControl x:Class="RAP.View.SupervisionListView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:RAP.View"
       mc:Ignorable="d">
 
     <StackPanel Orientation="Vertical">
@@ -17,6 +17,7 @@
             </Button>
         </Grid>
 
+        <!-- Name list -->
         <ListBox Grid.Row="1" ItemsSource="{Binding Supervisees}" BorderThickness="0" Background="Beige"/>
     </StackPanel>
 </UserControl>

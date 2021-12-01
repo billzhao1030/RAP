@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+/** Reseacher list view
+ * 
+ *  This file provide the behind-code and control of Researcher list view
+ *  
+ *  Author: Xunyi Zhao, Michael Skrinnikoff, Callum O'Rourke
+ */
+
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using RAP.Controller;
 using RAP.Research;
 
@@ -24,6 +21,8 @@ namespace RAP.View {
             Categories.SelectedIndex = 0;
         }
 
+
+        // When the 'enter' key is up, update the list
         private void SearchBox_KeyUp(object sender, KeyEventArgs e) {
             if (e.Key == Key.Enter) {
                 PositionLevel level = EnumStringConverter.ParseEnum<PositionLevel>(Categories.SelectedItem.ToString());
@@ -31,21 +30,28 @@ namespace RAP.View {
             }
         }
 
+
+        // When select a level, update the list
+        private void Categories_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            PositionLevel level = EnumStringConverter.ParseEnum<PositionLevel>(Categories.SelectedItem.ToString());
+            ResearcherList.ItemsSource = ResearcherController.FilterBy(SearchBox.Text.ToUpper(), level);
+        }
+
+
+        // When select a researcher update the researcher details view
         private void ResearcherList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             object selected = ResearcherList.SelectedItem;
+
             if (selected != null) {
                 Researcher r = (Researcher)selected;
                 ResearcherController.LoadCurrentResearcher(r);
             }
+
             ((MainWindow)(Application.Current.MainWindow)).UpdateResearcherDetailsView();
         }
 
-        private void Categories_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            PositionLevel level = EnumStringConverter.ParseEnum<PositionLevel>(Categories.SelectedItem.ToString());
 
-            ResearcherList.ItemsSource = ResearcherController.FilterBy(SearchBox.Text.ToUpper(), level);
-        }
-
+        // Generate the report when that button is clicked
         private void ReportButton_Click(object sender, RoutedEventArgs e) {
             if (ReportView.Current == null) {
                 ReportView report = new ReportView();

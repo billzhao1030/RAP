@@ -1,32 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+/** Publication list view
+ * 
+ *  This file provide the behind-code and control of Publication list view
+ *  
+ *  Author: Xunyi Zhao, Michael Skrinnikoff, Callum O'Rourke
+ */
+
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using RAP.Research;
 using RAP.Controller;
 
 namespace RAP.View {
-    /// <summary>
-    /// Interaction logic for PublicationListView.xaml
-    /// </summary>
     public partial class PublicationListView : UserControl {
         public PublicationListView() {
             InitializeComponent();
         }
 
+
+        // Filter according to the year range
         private void FilterYear_Click(object sender, RoutedEventArgs e) {
             int start, end;
 
+            // if no start/end year, system treat it as the smallest/biggest year
             if (ResearcherController.selectedResearcher != null) {
                 if (!int.TryParse(PubY1.Text, out start)) {
                     start = DateTime.MinValue.Year;
@@ -36,17 +33,21 @@ namespace RAP.View {
                     end = DateTime.MaxValue.Year;
                 }
                 
-
                 PublicationList.ItemsSource = PublicationController.FilterByYear(start, end);
             }
         }
 
+
+        // Invert the list 
         private void InvertYear_Click(object sender, RoutedEventArgs e) {
             PublicationList.ItemsSource = PublicationController.Invert();
         }
 
+
+        // Changes when select a publication, show the details
         private void PublicationList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             object selected = PublicationList.SelectedItem;
+
             if (selected != null) {
                 Publication p = (Publication)selected;
                 PublicationController.LoadPublicationDetails(p);
@@ -54,5 +55,6 @@ namespace RAP.View {
 
             ((MainWindow)Application.Current.MainWindow).SwitchFuncView(FuncView.PublicationDetail);
         }
+
     }
 }

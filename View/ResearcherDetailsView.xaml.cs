@@ -1,31 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+/** Researcher details view
+ * 
+ *  This file provide the behind-code and control of Researcher details view
+ *  
+ *  Author: Xunyi Zhao, Michael Skrinnikoff, Callum O'Rourke
+ */
+
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace RAP.View {
-    /// <summary>
-    /// Interaction logic for ResearcherDetailsView.xaml
-    /// </summary>
     public partial class ResearcherDetailsView : UserControl {
         public ResearcherDetailsView() {
             InitializeComponent();
         }
 
+        // Show the supervision list if available
         private void ShowSupervisions_Click(object sender, RoutedEventArgs e) {
             ((MainWindow)Application.Current.MainWindow).SwitchFuncView(FuncView.SupervisionList);
         }
 
+
+        // Show the cumulative count table
         private void CumulativeCount_Click(object sender, RoutedEventArgs e) {
             ((MainWindow)Application.Current.MainWindow).SwitchFuncView(FuncView.CumulativeCount);
         }
