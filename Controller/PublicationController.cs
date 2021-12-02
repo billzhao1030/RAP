@@ -18,6 +18,7 @@ namespace RAP.Controller {
         public static Publication selectedPublication { get; private set; } // The publication that user select
         public static List<string> PublicationYears { get; private set; } // The list of years, from utas_start to now
         public static bool Ascending { get; private set; } // The sorting way
+        public static List<Publication> Publications { get; private set; }
 
 
         // Load the full details in PublicationDetailsView
@@ -34,7 +35,9 @@ namespace RAP.Controller {
                 // Add a default empty value for start
                 PublicationYears.Insert(0, "");
 
-                return Sorting(researcher.Publications);
+                Publications = researcher.Publications;
+
+                return Sorting(Publications);
             }
 
             return null;
@@ -54,9 +57,8 @@ namespace RAP.Controller {
         // Invert the displayed publication list
         public static List<Publication> Invert() {
             Ascending = !Ascending; // Invert the sorting way
-            Researcher researcher = ResearcherController.selectedResearcher;
 
-            return Sorting(researcher.Publications);
+            return Sorting(Publications);
         }
 
 
@@ -68,8 +70,10 @@ namespace RAP.Controller {
             var filter = from publication in ResearcherController.selectedResearcher.Publications
                          where publication.Year >= start && publication.Year <= end
                          select publication;
+
+            Publications = filter.ToList();
                          
-            return Sorting(filter.ToList());
+            return Sorting(Publications);
         }
 
 
