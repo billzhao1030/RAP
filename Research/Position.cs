@@ -15,11 +15,11 @@ namespace RAP.Research {
     public enum PositionLevel {
         [Description("All Researcher")] AllResearcher,
         Student,
-        [Description("Post-Doc")] A,
-        [Description("Lecturer")] B,
-        [Description("Senior Lecturer")] C,
-        [Description("Associate Professor")] D,
-        [Description("Professor")] E
+        [Description("A, Post-Doc")] A,
+        [Description("B, Lecturer")] B,
+        [Description("C, Senior Lecturer")] C,
+        [Description("D, Associate Professor")] D,
+        [Description("E, Professor")] E
     };
 
     public class Position {
