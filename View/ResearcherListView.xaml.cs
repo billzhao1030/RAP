@@ -15,9 +15,9 @@ using RAP.Research;
 namespace RAP.View {
     public partial class ResearcherListView : UserControl {
         public ResearcherListView() {
-            ResearcherController.LoadResearchers();
+            
             InitializeComponent();
-
+            ResearcherList.ItemsSource = ResearcherController.LoadResearchers();
             Categories.SelectedIndex = 0;
         }
 

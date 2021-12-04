@@ -67,12 +67,6 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
 
-        <!-- Get researcher list for display -->
-        <ObjectDataProvider x:Key="getResearcher" 
-                            ObjectType="{x:Type controller:ResearcherController}"
-                            MethodName="GetResearchers">
-        </ObjectDataProvider>
-
         <!-- Show researcher list name format template -->
         <DataTemplate x:Key="showResearcherName">
             <TextBlock Style="{StaticResource FieldStyle}">

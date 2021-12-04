@@ -32,7 +32,6 @@
         
         <!-- Researcher Name List -->
         <ListBox x:Name="ResearcherList" 
-                 ItemsSource="{Binding Source={StaticResource getResearcher}}"
                  SelectionChanged="ResearcherList_SelectionChanged"
                  ItemTemplate="{StaticResource showResearcherName}"
                  Background="Beige">

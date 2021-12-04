@@ -63,11 +63,5 @@ namespace RAP.Controller {
             }
             return subGroup;
         }
-
-
-        // An assistant method helping the static resource in app.xaml (when show the list first time)
-        public static List<Researcher> GetResearchers() {
-            return Researchers;
-        }
     }
 }
