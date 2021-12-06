@@ -100,7 +100,9 @@ namespace RAP.Database {
 
                 // Read details in to the current researcher
                 MySqlCommand getResearcherDetail = new MySqlCommand("select unit, campus, photo, degree, supervisor_id, utas_start, " +
-                                                        "current_start from researcher where id = '" + r.Id + "'", conn);
+                                                        "current_start from researcher where id = ?id", conn);
+                getResearcherDetail.Parameters.AddWithValue("id", r.Id);
+
                 rdr = getResearcherDetail.ExecuteReader();
 
                 if (rdr.Read()) {
@@ -122,7 +124,9 @@ namespace RAP.Database {
                         // Fetch the supervision name list (sorted)
                         rdr.Close();
                         MySqlCommand getSupervisionList = new MySqlCommand("select title, given_name, family_name from researcher " +
-                                                                           "where supervisor_id = " + r.Id, conn);
+                                                                           "where supervisor_id = ?id", conn);
+                        getSupervisionList.Parameters.AddWithValue("id", r.Id);
+
                         rdr = getSupervisionList.ExecuteReader();
 
                         while (rdr.Read()) {
@@ -134,7 +138,9 @@ namespace RAP.Database {
 
                         // fetch the position list (sorted)
                         rdr.Close();
-                        MySqlCommand getPositions = new MySqlCommand("select * from position where id = '" + r.Id + "'", conn);
+                        MySqlCommand getPositions = new MySqlCommand("select * from position where id = ?id", conn);
+                        getPositions.Parameters.AddWithValue("id", r.Id);
+
                         rdr = getPositions.ExecuteReader();
 
                         while (rdr.Read()) {
@@ -162,7 +168,9 @@ namespace RAP.Database {
                         // Read the supervisor names 
                         rdr.Close();
                         MySqlCommand getSupervisor = new MySqlCommand("select title, given_name, family_name from researcher " +
-                                                                     "where id = '" + supervisorID + "'", conn);
+                                                                     "where id = ?id", conn);
+                        getSupervisor.Parameters.AddWithValue("id", supervisorID);
+
                         rdr = getSupervisor.ExecuteReader();
 
                         if (rdr.Read()) {
@@ -175,7 +183,9 @@ namespace RAP.Database {
                 rdr.Close();
                 MySqlCommand getPublicationList = new MySqlCommand("select publication.doi, year, title from publication, researcher_publication " +
                                                                    "where researcher_publication.doi = publication.doi and " +
-                                                                   "researcher_publication.researcher_id = " + r.Id, conn);
+                                                                   "researcher_publication.researcher_id = ?id", conn);
+                getPublicationList.Parameters.AddWithValue("id", r.Id);
+
                 rdr = getPublicationList.ExecuteReader();
 
                 while (rdr.Read()) {
@@ -206,7 +216,9 @@ namespace RAP.Database {
 
                 // Read all the details for current publoication
                 MySqlCommand getPublicationDetails = new MySqlCommand("select authors, type, cite_as, available from publication " +
-                                                                      "where doi = '" + p.Doi + "'", conn);
+                                                                      "where doi = ?doi", conn);
+                getPublicationDetails.Parameters.AddWithValue("doi", p.Doi);
+
                 rdr = getPublicationDetails.ExecuteReader();
 
                 if (rdr.Read()) {
