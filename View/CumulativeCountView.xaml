@@ -22,7 +22,7 @@
         <DataGrid x:Name="CumulativeCountTable" AutoGenerateColumns="False" GridLinesVisibility="None" 
                   BorderThickness="0" Background="Beige" 
                   CanUserResizeColumns="False" CanUserResizeRows="False"
-                  IsReadOnly="True">
+                  IsReadOnly="True" CanUserReorderColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Year" Binding="{Binding Item1}" Width="1*" 
                                         ElementStyle="{StaticResource DataGridStyle}"

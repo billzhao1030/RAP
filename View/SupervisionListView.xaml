@@ -8,7 +8,7 @@
 
     <StackPanel Orientation="Vertical">
         <Grid>
-            <Label Content="Supervision List" DockPanel.Dock="Left" Style="{StaticResource HeaderStyle}"/>
+            <Label Content="Supervision Name List" DockPanel.Dock="Left" Style="{StaticResource HeaderStyle}"/>
             <!-- Close window button -->
             <Button Height="20" Width="20" Margin="2,2,2,2" Click="Button_Click" Style="{StaticResource CloseWindow}">
                 <StackPanel VerticalAlignment="Center" >

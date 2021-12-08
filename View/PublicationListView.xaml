@@ -31,7 +31,7 @@
         <DataGrid x:Name="PublicationList" AutoGenerateColumns="False" GridLinesVisibility="None" 
                   BorderThickness="0" Background="Beige" 
                   CanUserResizeColumns="False" CanUserResizeRows="False"
-                  IsReadOnly="True" SelectionChanged="PublicationList_SelectionChanged">
+                  IsReadOnly="True" SelectionChanged="PublicationList_SelectionChanged" CanUserReorderColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Year" Binding="{Binding Year}" Width="0.5*" 
                                         ElementStyle="{StaticResource DataGridStyle}"

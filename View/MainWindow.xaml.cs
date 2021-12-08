@@ -22,7 +22,7 @@ namespace RAP.View {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
-            RDetail.IsEnabled = false;
+            RDetail.Visibility = Visibility.Hidden;
         }
 
         // Update the view of researcher's details view
@@ -30,7 +30,6 @@ namespace RAP.View {
             if (ResearcherController.selectedResearcher != null) {
                 // Switch to the selected researcher and enable view
                 RDetail.DataContext = ResearcherController.selectedResearcher;
-                RDetail.IsEnabled = true;
 
                 // Clear FuncWindow content
                 FuncWindow.Content = null;
@@ -47,6 +46,10 @@ namespace RAP.View {
                 // Set year range selection to 0
                 PubLView.PubY1.SelectedIndex = PubLView.PubY2.SelectedIndex = 0;
             }
+
+            if (RDetail.Visibility == Visibility.Hidden) {
+                RDetail.Visibility = Visibility.Visible;
+            }
         }
 
 
@@ -61,11 +64,15 @@ namespace RAP.View {
                     break;
 
                 case FuncView.SupervisionList:
-                    FuncWindow.Content = new SupervisionListView();
+                    if(!(FuncWindow is SupervisionListView)) {
+                        FuncWindow.Content = new SupervisionListView();
+                    }
                     break;
 
                 case FuncView.CumulativeCount:
-                    FuncWindow.Content = new CumulativeCountView();
+                    if(!(FuncWindow is CumulativeCountView)) {
+                        FuncWindow.Content = new CumulativeCountView();
+                    }
                     break;
             }
         }

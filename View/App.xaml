@@ -109,7 +109,7 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate>
-                                <TextBlock Text="  No Result!  " />
+                                <TextBlock Text="  No Result!  " Foreground="Red"/>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
@@ -123,7 +123,7 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate>
-                                <TextBlock Text="  No Result!  " />
+                                <TextBlock Text="  No Result!  " Foreground="Red" />
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
