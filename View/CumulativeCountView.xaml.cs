@@ -16,6 +16,7 @@ namespace RAP.View {
         public CumulativeCountView() {
             InitializeComponent();
             CumulativeCountTable.ItemsSource = PublicationController.CumulativeCount(); // Link the count table
+            
         }
 
 

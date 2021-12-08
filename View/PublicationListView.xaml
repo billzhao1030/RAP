@@ -28,22 +28,24 @@
         </DockPanel>
 
         <!-- Publication list -->
-        <ListView x:Name="PublicationList" SelectionChanged="PublicationList_SelectionChanged" 
-                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="Beige">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Year}">
-                        <GridViewColumnHeader Click="InvertYear_Click">Year</GridViewColumnHeader>
-                    </GridViewColumn>
-                    <GridViewColumn Header="Title">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Title}" TextWrapping="Wrap"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <DataGrid x:Name="PublicationList" AutoGenerateColumns="False" GridLinesVisibility="None" 
+                  BorderThickness="0" Background="Beige" 
+                  CanUserResizeColumns="False" CanUserResizeRows="False"
+                  IsReadOnly="True" SelectionChanged="PublicationList_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Year" Binding="{Binding Year}" Width="0.5*" 
+                                        ElementStyle="{StaticResource DataGridStyle}"
+                                        HeaderStyle="{StaticResource DataGridHeaderStyle}">
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="3*"
+                                        HeaderStyle="{StaticResource DataGridHeaderStyle}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </StackPanel>
 </UserControl>

@@ -11,7 +11,7 @@
         <Grid>
             <Label Content="Publication Details"  Style="{StaticResource HeaderStyle}"/>
             <!-- Close window button -->
-            <Button Height="30" Width="30" Margin="2,2,2,2" Click="Button_Click" Style="{StaticResource CloseWindow}">
+            <Button Height="20" Width="20" Margin="2,2,2,2" Click="Button_Click" Style="{StaticResource CloseWindow}">
                 <StackPanel VerticalAlignment="Center" >
                     <TextBlock Text="X"/>
                 </StackPanel>

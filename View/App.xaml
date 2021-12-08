@@ -38,7 +38,7 @@
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="Background" Value="AliceBlue"/>
             <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontSize" Value="19"/>
         </Style>
         
         <!-- Normal button style -->
@@ -49,7 +49,16 @@
             <Setter Property="FontFamily" Value="Times New Roman"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
-        
+
+        <!-- Data grid format -->
+        <Style x:Key="DataGridStyle" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="DataGridHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+
         <!-- Convertor of Enum and String -->
         <local:Convertor x:Key="Convertor"/>
 
@@ -93,8 +102,8 @@
             </TextBlock>
         </DataTemplate>
 
-        <!-- Response to no result for list view and list box-->
-        <Style TargetType="ListView">
+        <!-- Response to no result for data grid and list box-->
+        <Style TargetType="DataGrid">
             <Style.Triggers>
                 <Trigger Property="HasItems" Value="False">
                     <Setter Property="Template">

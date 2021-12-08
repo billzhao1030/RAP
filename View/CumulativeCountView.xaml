@@ -11,7 +11,7 @@
             <!-- Title -->
             <Label Content="CumulativeCount" DockPanel.Dock="Left" Style="{StaticResource HeaderStyle}"/>
             <!-- Close window button -->
-            <Button Height="30" Width="30" Margin="2,2,2,2" Click="Button_Click" Style="{StaticResource CloseWindow}">
+            <Button Height="20" Width="20" Margin="2,2,2,2" Click="Button_Click" Style="{StaticResource CloseWindow}">
                 <StackPanel VerticalAlignment="Center" >
                     <TextBlock Text="X"/>
                 </StackPanel>
@@ -19,19 +19,21 @@
         </Grid>
 
         <!-- The cumulative count table -->
-        <ListView x:Name="CumulativeCountTable" BorderThickness="0"  
-                  HorizontalContentAlignment="Center" Background="Beige">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Year" DisplayMemberBinding="{Binding Item1}" Width="100"/>
-                    <GridViewColumn Header="Publication(s)" DisplayMemberBinding="{Binding Item2}" Width="200"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <DataGrid x:Name="CumulativeCountTable" AutoGenerateColumns="False" GridLinesVisibility="None" 
+                  BorderThickness="0" Background="Beige" 
+                  CanUserResizeColumns="False" CanUserResizeRows="False"
+                  IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Year" Binding="{Binding Item1}" Width="1*" 
+                                        ElementStyle="{StaticResource DataGridStyle}"
+                                        HeaderStyle="{StaticResource DataGridHeaderStyle}">
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Publications" Binding="{Binding Item2}" Width="3*"
+                                        ElementStyle="{StaticResource DataGridStyle}"
+                                        HeaderStyle="{StaticResource DataGridHeaderStyle}">
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </StackPanel>
 </UserControl>
