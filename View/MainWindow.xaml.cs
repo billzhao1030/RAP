@@ -84,5 +84,14 @@ namespace RAP.View {
             Application.Current.Shutdown();
         }
 
+        // Generate the report when that button is clicked
+        private void ReportButton_Click(object sender, RoutedEventArgs e) {
+            if (ReportView.Current == null) {
+                ReportView report = new ReportView();
+                report.Show();
+            } else {
+                ReportView.Current.Activate();
+            }
+        }
     }
 }
