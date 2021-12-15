@@ -41,6 +41,8 @@ namespace RAP.Controller {
         public static List<Researcher> FilterBy(string value, PositionLevel level) {
             List<Researcher> subGroup = Researchers; // Reseachers displayed on the screen
 
+            string name = value.Trim();
+
             // First filter by level
             if (level != PositionLevel.AllResearcher) {
                 var filter =
@@ -52,11 +54,11 @@ namespace RAP.Controller {
             }
 
             // Then by name (trim the front space first)
-            if (value.Trim() != "") {
+            if (name != "") {
                 var filter =
                     from researcher in subGroup
-                    where researcher.FamilyName.ToUpper().Contains(value) ||
-                          researcher.GivenName.ToUpper().Contains(value)
+                    where researcher.FamilyName.ToUpper().Contains(name) ||
+                          researcher.GivenName.ToUpper().Contains(name)
                     select researcher;
 
                 subGroup = filter.ToList();
