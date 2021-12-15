@@ -68,7 +68,7 @@
 
             <!-- Age -->
             <Label Content="Age:" Grid.Row="8" Style="{StaticResource LabelStyle}"/>
-            <TextBlock Grid.Row="8" Grid.Column="1" Text="{Binding Age, StringFormat='{}{0} year(s)'}" Style="{StaticResource FieldStyle}"/>
+            <TextBlock Grid.Row="8" Grid.Column="1" Text="{Binding Age, StringFormat='{}{0} day(s)'}" Style="{StaticResource FieldStyle}"/>
         </Grid>
     </StackPanel>
 </UserControl>

@@ -29,6 +29,6 @@ namespace RAP.Research {
         public DateTime Available { get; set; }
 
         // Extra attribute 
-        public int Age { get { return DateTime.Today.Year - Year; } } // The number of years since it published
+        public int Age { get { return (int)(DateTime.Today - Available).TotalDays; } } // The number of years since it published
     }
 }
