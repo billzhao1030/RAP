@@ -26,8 +26,5 @@ namespace RAP.View {
             ((MainWindow)Application.Current.MainWindow).SwitchFuncView(FuncView.CumulativeCount);
         }
 
-        public void unselect() {
-
-        }
     }
 }

@@ -55,6 +55,5 @@ namespace RAP.View {
 
             ((MainWindow)Application.Current.MainWindow).SwitchFuncView(FuncView.PublicationDetail);
         }
-
     }
 }
