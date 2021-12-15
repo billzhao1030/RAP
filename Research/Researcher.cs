@@ -3,7 +3,7 @@
  * 
  *  This class file provide the abstract definition of Researcher entity
  * 
- *  Author: Xunyi Zhao, Michael Skrinnikoff, Callum O'Rourke
+ *  Author: Xunyi Zhao, Michael Skrinnikoff
  */
 
 using System;

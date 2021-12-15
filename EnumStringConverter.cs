@@ -3,7 +3,7 @@
  * 
  *  This class file provides the way that convert a string to enum / enum to the description string
  *  
- *  Author: Xunyi Zhao, Michael Skrinnikoff, Callum O'Rourke
+ *  Author: Xunyi Zhao, Michael Skrinnikoff
  */
 
 using System;

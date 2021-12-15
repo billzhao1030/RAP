@@ -3,7 +3,7 @@
  * 
  *  This file provide the behind-code and control of Researcher details view
  *  
- *  Author: Xunyi Zhao, Michael Skrinnikoff, Callum O'Rourke
+ *  Author: Xunyi Zhao, Michael Skrinnikoff
  */
 
 using System.Windows;
@@ -17,12 +17,14 @@ namespace RAP.View {
 
         // Show the supervision list if available
         private void ShowSupervisions_Click(object sender, RoutedEventArgs e) {
-            ((MainWindow)Application.Current.MainWindow).SwitchFuncView(FuncView.SupervisionList);
+            ((MainWindow)Application.Current.MainWindow).unselect();
+            ((MainWindow)Application.Current.MainWindow).SwitchFuncView(FuncView.SupervisionList);   
         }
 
 
         // Show the cumulative count table
         private void CumulativeCount_Click(object sender, RoutedEventArgs e) {
+            ((MainWindow)Application.Current.MainWindow).unselect();
             ((MainWindow)Application.Current.MainWindow).SwitchFuncView(FuncView.CumulativeCount);
         }
 

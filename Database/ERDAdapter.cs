@@ -4,7 +4,7 @@
  *  This file provide the connection to the database
  *  And fetch the details from database for controller classes
  *  
- *  Author: Xunyi Zhao, Michael Skrinnikoff, Callum O'Rourke
+ *  Author: Xunyi Zhao, Michael Skrinnikoff
  */
 
 using System;

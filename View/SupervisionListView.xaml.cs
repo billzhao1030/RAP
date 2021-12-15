@@ -3,7 +3,7 @@
  * 
  *  This file provide the behind-code and control of Supervision list view
  *  
- *  Author: Xunyi Zhao, Michael Skrinnikoff, Callum O'Rourke
+ *  Author: Xunyi Zhao, Michael Skrinnikoff
  */
 
 using System.Windows;

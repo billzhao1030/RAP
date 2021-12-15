@@ -3,7 +3,7 @@
  * 
  *  This file provide the behind-code of Main window
  *  
- *  Author: Xunyi Zhao, Michael Skrinnikoff, Callum O'Rourke
+ *  Author: Xunyi Zhao, Michael Skrinnikoff
  */
 
 using System;
@@ -32,6 +32,7 @@ namespace RAP.View {
                 RDetail.DataContext = ResearcherController.selectedResearcher;
 
                 // Clear FuncWindow content
+                unselect();
                 FuncWindow.Content = null;
 
                 // Hide show name button if not a staff or supervise no student
@@ -70,7 +71,9 @@ namespace RAP.View {
                     break;
 
                 case FuncView.CumulativeCount:
-                    FuncWindow.Content = new CumulativeCountView();
+                    if (!(FuncWindow is CumulativeCountView)) {
+                        FuncWindow.Content = new CumulativeCountView();
+                    }
                     break;
             }
         }

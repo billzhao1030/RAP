@@ -3,7 +3,7 @@
  *  
  *  This class file provides the definition of Student entity
  *  
- *  Author: Xunyi Zhao, Michael Skrinnikoff, Callum O'Rourke
+ *  Author: Xunyi Zhao, Michael Skrinnikoff
  */
 
 namespace RAP.Research {

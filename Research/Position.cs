@@ -3,7 +3,7 @@
  * 
  *  This class file provide the definition of the Position entity
  * 
- *  Author: Xunyi Zhao, Michael Skrinnikoff, Callum O'Rourke
+ *  Author: Xunyi Zhao, Michael Skrinnikoff
  */
 
 using System;

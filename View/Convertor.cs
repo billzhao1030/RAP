@@ -3,7 +3,7 @@
  * 
  *  This class file provide the behind-code and control of Cumulative count view
  *  
- *  Author: Xunyi Zhao, Michael Skrinnikoff, Callum O'Rourke
+ *  Author: Xunyi Zhao, Michael Skrinnikoff
  */
 
 using System;

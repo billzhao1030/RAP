@@ -3,7 +3,7 @@
  * 
  *  This file provides control to the views related to publication
  * 
- *  Author: Xunyi Zhao, Michael Skrinnikoff, Callum O'Rourke
+ *  Author: Xunyi Zhao, Michael Skrinnikoff
  */
 
 using System;

@@ -3,7 +3,7 @@
  * 
  *  This file provide the behind-code and control of Cumulative count view
  *  
- *  Author: Xunyi Zhao, Michael Skrinnikoff, Callum O'Rourke
+ *  Author: Xunyi Zhao, Michael Skrinnikoff
  */
 
 
@@ -16,7 +16,6 @@ namespace RAP.View {
         public CumulativeCountView() {
             InitializeComponent();
             CumulativeCountTable.ItemsSource = PublicationController.CumulativeCount(); // Link the count table
-            
         }
 
 
