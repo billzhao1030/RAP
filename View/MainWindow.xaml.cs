@@ -70,9 +70,7 @@ namespace RAP.View {
                     break;
 
                 case FuncView.CumulativeCount:
-                    if(!(FuncWindow is CumulativeCountView)) {
-                        FuncWindow.Content = new CumulativeCountView();
-                    }
+                    FuncWindow.Content = new CumulativeCountView();
                     break;
             }
         }
@@ -92,6 +90,10 @@ namespace RAP.View {
             } else {
                 ReportView.Current.Activate();
             }
+        }
+
+        public void unselect() {
+            RDetail.PList.PublicationList.SelectedItem = null;
         }
     }
 }

@@ -25,5 +25,9 @@ namespace RAP.View {
         private void CumulativeCount_Click(object sender, RoutedEventArgs e) {
             ((MainWindow)Application.Current.MainWindow).SwitchFuncView(FuncView.CumulativeCount);
         }
+
+        public void unselect() {
+
+        }
     }
 }

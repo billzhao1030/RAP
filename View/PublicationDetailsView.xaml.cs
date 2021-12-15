@@ -20,7 +20,9 @@ namespace RAP.View {
 
         // Close window button clicked
         private void Button_Click(object sender, RoutedEventArgs e) {
-            ((MainWindow)Application.Current.MainWindow).FuncWindow.Content = null;
+            ((MainWindow)Application.Current.MainWindow).unselect();
+
+            ((MainWindow)Application.Current.MainWindow).FuncWindow.Content = null;  
         }
     }
 }
